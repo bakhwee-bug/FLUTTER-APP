@@ -11,27 +11,82 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // TRY THIS: Try running your application with "flutter run". You'll see
-        // the application has a purple toolbar. Then, without quitting the app,
-        // try changing the seedColor in the colorScheme below to Colors.green
-        // and then invoke "hot reload" (save your changes or press the "hot
-        // reload" button in a Flutter-supported IDE, or press "r" if you used
-        // the command line to start the app).
-        //
-        // Notice that the counter didn't reset back to zero; the application
-        // state is not lost during the reload. To reset the state, use hot
-        // restart instead.
-        //
-        // This works for code too, not just values: Most code changes can be
-        // tested with just a hot reload.
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
+      home: Scaffold(
+        backgroundColor: Colors.white,
+        body: Column(
+          children: [
+            //Status Bar
+            const SizedBox(
+              height: 44,
+            ),
+            // Top
+            Container(
+              padding: const EdgeInsets.fromLTRB(10, 6, 15, 0),
+              height: 50,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Image.asset(
+                    'assets/Instagram_logo.png',
+                  ),
+                  Row(
+                    children: [
+                      Image.asset(
+                        'assets/Add.png',
+                        width: 26,
+                        height: 26,
+                      ),
+                      const SizedBox(
+                        width: 18,
+                      ),
+                      Image.asset(
+                        'assets/Heart.png',
+                        width: 26,
+                        height: 26,
+                      ),
+                      const SizedBox(
+                        width: 18,
+                      ),
+                      Image.asset(
+                        'assets/Share.png',
+                        width: 26,
+                        height: 26,
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+            //Bottom
+            Container(
+              padding: const EdgeInsets.symmetric(
+                horizontal: 30,
+                vertical: 12,
+              ),
+              height: 50,
+              decoration: BoxDecoration(
+                border: Border(
+                  top: BorderSide(
+                    color: Colors.grey.shade300,
+                    width: 0.5,
+                  ),
+                ),
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Image.asset('assets/Home.png'),
+                  Image.asset('assets/Search.png'),
+                  Image.asset('assets/Reels.png'),
+                  Image.asset('assets/Shop.png'),
+                  Image.asset('assets/Profile_picture_01.png'),
+                ],
+              ),
+            )
+          ],
+        ),
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
     );
   }
 }
