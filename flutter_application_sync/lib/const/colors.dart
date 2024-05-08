@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 const backgroundColor = Color(0xffF2F3F9);
-const primaryColor = Color(0xff8247FF);
+const primaryColor = Color(0xff1BD18F);
 const purple_100 = Color(0xff8247FF);
 const purple_80 = Color(0xff9B6CFF);
 const purple_60 = Color(0xffB491FF);
@@ -28,4 +28,4 @@ const black_20 = Color(0xffCECECE);
 const black_10 = Color(0xffE7E7E7);
 const sub3 = Color(0xffFF3358);
 const secondaryColor = Color(0xffF2F3F9);
-const unselectedColor = Color(0xffB2BFD0);
+const unselectedColor = Color(0xffD9D9D9);

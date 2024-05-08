@@ -12,6 +12,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
@@ -57,27 +58,50 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: _navIndex.elementAt(_selectedIndex),
-      bottomNavigationBar: BottomNavigationBar(
-        fixedColor: purple_100,
-        unselectedItemColor: unselectedColor,
-        showUnselectedLabels: true,
-        type: BottomNavigationBarType.fixed,
-        items: const [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: '홈',
+      bottomNavigationBar: Container(
+        decoration: BoxDecoration(
+          boxShadow: [
+            BoxShadow(
+              color: Colors.grey.withOpacity(0.5), // 그림자 색상과 투명도 설정
+              spreadRadius: 0,
+              blurRadius: 10, // 흐림 정도
+              offset: Offset(0, -1), // 그림자 방향 조절 (x, y)
+            ),
+          ],
+          borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(20),
+            topRight: Radius.circular(20),
           ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.calendar_month),
-            label: '녹음실',
+        ),
+        child: ClipRRect(
+          borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(20), // 상단 왼쪽 모서리 둥글기
+            topRight: Radius.circular(20), // 상단 오른쪽 모서리 둥글기
           ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.search),
-            label: '저장실',
+          child: BottomNavigationBar(
+            backgroundColor: Colors.white, // 네비게이션 바 배경색을 흰색으로 설정
+            fixedColor: primaryColor,
+            unselectedItemColor: unselectedColor,
+            showUnselectedLabels: true,
+            type: BottomNavigationBarType.fixed,
+            items: const [
+              BottomNavigationBarItem(
+                icon: Icon(Icons.home),
+                label: '홈',
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(Icons.calendar_month),
+                label: '녹음실',
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(Icons.search),
+                label: '저장실',
+              ),
+            ],
+            currentIndex: _selectedIndex,
+            onTap: _onNavTapped,
           ),
-        ],
-        currentIndex: _selectedIndex,
-        onTap: _onNavTapped,
+        ),
       ),
     );
   }
