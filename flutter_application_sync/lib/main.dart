@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_sync/view/mainView.dart';
+import 'package:flutter_application_sync/view/myView.dart';
+import 'package:flutter_application_sync/view/recordView.dart';
 import '/const/colors.dart';
 
 void main() {
@@ -10,14 +13,12 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    MediaQuery.of(context).size.width;
+    MediaQuery.of(context).size.height;
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Sync',
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: const MyHomePage(title: 'Sync'),
     );
   }
 }
@@ -32,20 +33,12 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
-
   int _selectedIndex = 0;
 
   final List<Widget> _navIndex = [
-    MainPage(),
-    RecordPage(),
-    MyPage(),
+    MainView(),
+    RecordView(),
+    MyView(),
   ];
 
   void _onNavTapped(int index) {
@@ -104,47 +97,5 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
       ),
     );
-  }
-}
-
-class MainPage extends StatefulWidget {
-  const MainPage({super.key});
-
-  @override
-  State<MainPage> createState() => MainState();
-}
-
-class MainState extends State<MainPage> {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold();
-  }
-}
-
-class RecordPage extends StatefulWidget {
-  const RecordPage({super.key});
-
-  @override
-  State<RecordPage> createState() => RecordState();
-}
-
-class RecordState extends State<RecordPage> {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold();
-  }
-}
-
-class MyPage extends StatefulWidget {
-  const MyPage({super.key});
-
-  @override
-  State<MyPage> createState() => MyState();
-}
-
-class MyState extends State<MyPage> {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold();
   }
 }

@@ -21,3 +21,10 @@ flutter:
   uses-material-design: true
   assets:
     - assets/images/
+  fonts:
+    - family: SpoqahansansneoBold
+      fonts:
+        - asset: assets/fonts/spoqahansansneo_bold.ttf
+    - family: SpoqahansansneoRegular
+      fonts:
+        - asset: assets/fonts/spoqahansansneo_regular.ttf

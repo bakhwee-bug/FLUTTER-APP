@@ -27,5 +27,6 @@ const black_30 = Color(0xffB7B7B7);
 const black_20 = Color(0xffCECECE);
 const black_10 = Color(0xffE7E7E7);
 const sub3 = Color(0xffFF3358);
-const secondaryColor = Color(0xffF2F3F9);
+const white = Color(0xffffffff);
+const secondaryColor = Color(0xffF4F4F4);
 const unselectedColor = Color(0xffD9D9D9);
