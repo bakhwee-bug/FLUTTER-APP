@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_sync/components/music.dart';
 import 'package:flutter_application_sync/components/music_box.dart';
+import 'package:flutter_application_sync/components/sync_bar.dart';
 import '/const/colors.dart';
 
 class RecordView extends StatelessWidget {
@@ -15,14 +16,7 @@ class RecordView extends StatelessWidget {
           child: Column(
             children: [
               //Appbar
-              Container(
-                padding: const EdgeInsets.fromLTRB(20, 20, 0, 20),
-                color: white,
-                width: MediaQuery.of(context).size.width,
-                height: 52,
-                alignment: Alignment.centerLeft,
-                child: Image.asset('assets/images/sync_logo.png'),
-              ),
+              Syncbar(),
               //songs
               Expanded(
                 child: SingleChildScrollView(
@@ -49,11 +43,11 @@ class RecordView extends StatelessWidget {
                             albumPicture:
                                 'assets/images/Album_image_NJWMX.jpg'),
                         Music(
-                            musicTitle: '해야 (HEYA)',
-                            artistName: 'IVE',
-                            albumName: 'IVE SWITCH',
+                            musicTitle: '고민중독',
+                            artistName: 'QWER',
+                            albumName: 'MANITO',
                             albumPicture:
-                                'assets/images/Album_image_iveswitch.jpg'),
+                                'assets/images/Album_image_MANITO.jpg'),
                         Music(
                             musicTitle: 'Better Things',
                             artistName: 'aespa',

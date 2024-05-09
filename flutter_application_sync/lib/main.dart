@@ -79,15 +79,15 @@ class _MyHomePageState extends State<MyHomePage> {
             type: BottomNavigationBarType.fixed,
             items: const [
               BottomNavigationBarItem(
-                icon: Icon(Icons.home),
+                icon: ImageIcon(AssetImage('assets/images/ic_home.png')),
                 label: '홈',
               ),
               BottomNavigationBarItem(
-                icon: Icon(Icons.calendar_month),
+                icon: ImageIcon(AssetImage('assets/images/ic_record.png')),
                 label: '녹음실',
               ),
               BottomNavigationBarItem(
-                icon: Icon(Icons.search),
+                icon: ImageIcon(AssetImage('assets/images/ic_my.png')),
                 label: '저장실',
               ),
             ],
