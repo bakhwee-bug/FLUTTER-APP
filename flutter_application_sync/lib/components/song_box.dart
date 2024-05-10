@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_sync/components/music.dart';
+import 'package:flutter_application_sync/components/song.dart';
 import 'package:flutter_application_sync/const/styles.dart';
-import 'package:flutter_application_sync/components/musics.dart';
+import 'package:flutter_application_sync/components/songs.dart';
 
 import '/const/colors.dart';
 
-class MusicBox extends StatelessWidget {
+class SongBox extends StatelessWidget {
   final String title;
-  final List<Music> musicList;
+  final List<Song> songList;
 
-  const MusicBox({
+  const SongBox({
     super.key,
     required this.title,
-    required this.musicList,
+    required this.songList,
   });
   @override
   Widget build(BuildContext context) {
@@ -27,7 +27,7 @@ class MusicBox extends StatelessWidget {
             '${title}',
             style: AppTextStyles.textBold18, // 정의된 텍스트 스타일 사용
           ),
-          Musics(musicList: musicList),
+          Songs(songList: songList),
         ],
       ),
     );

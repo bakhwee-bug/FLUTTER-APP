@@ -55,10 +55,10 @@ class _MyHomePageState extends State<MyHomePage> {
         decoration: BoxDecoration(
           boxShadow: [
             BoxShadow(
-              color: Colors.grey.withOpacity(0.5), // 그림자 색상과 투명도 설정
+              color: Colors.grey.withOpacity(0.5),
               spreadRadius: 0,
-              blurRadius: 10, // 흐림 정도
-              offset: Offset(0, -1), // 그림자 방향 조절 (x, y)
+              blurRadius: 10,
+              offset: Offset(0, -1),
             ),
           ],
           borderRadius: BorderRadius.only(
@@ -68,11 +68,11 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
         child: ClipRRect(
           borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(20), // 상단 왼쪽 모서리 둥글기
-            topRight: Radius.circular(20), // 상단 오른쪽 모서리 둥글기
+            topLeft: Radius.circular(20),
+            topRight: Radius.circular(20),
           ),
           child: BottomNavigationBar(
-            backgroundColor: Colors.white, // 네비게이션 바 배경색을 흰색으로 설정
+            backgroundColor: Colors.white,
             fixedColor: primaryColor,
             unselectedItemColor: unselectedColor,
             showUnselectedLabels: true,

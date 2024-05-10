@@ -24,7 +24,7 @@ class MusicBox extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            '${title}',
+            title,
             style: AppTextStyles.textBold18, // 정의된 텍스트 스타일 사용
           ),
           Musics(musicList: musicList),

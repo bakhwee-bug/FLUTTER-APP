@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_sync/components/sync_bar.dart';
-
 import '/const/colors.dart';
 
 class MyView extends StatelessWidget {
@@ -13,8 +12,13 @@ class MyView extends StatelessWidget {
           child: Column(
             children: [
               //Appbar
-              Syncbar(),
+              Syncbar(barImage: 'assets/images/sync_logo.png'),
               //songs
+              Expanded(
+                  child: SingleChildScrollView(
+                scrollDirection: Axis.vertical,
+                child: Column(),
+              ))
             ],
           ),
         ));

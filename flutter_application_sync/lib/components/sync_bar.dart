@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import '/const/colors.dart';
 
 class Syncbar extends StatelessWidget {
-  const Syncbar({super.key});
+  final String barImage;
+  const Syncbar({super.key, required this.barImage});
 
   @override
   Widget build(BuildContext context) {
@@ -12,7 +13,7 @@ class Syncbar extends StatelessWidget {
       width: MediaQuery.of(context).size.width,
       height: 52,
       alignment: Alignment.centerLeft,
-      child: Image.asset('assets/images/sync_logo.png'),
+      child: Image.asset(barImage),
     );
   }
 }

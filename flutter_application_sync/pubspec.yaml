@@ -28,3 +28,6 @@ flutter:
     - family: SpoqahansansneoRegular
       fonts:
         - asset: assets/fonts/spoqahansansneo_regular.ttf
+    - family: SpoqahansansneoMedium
+      fonts:
+        - asset: assets/fonts/spoqahansansneo_medium.ttf
