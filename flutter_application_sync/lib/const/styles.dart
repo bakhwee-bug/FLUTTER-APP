@@ -3,6 +3,10 @@ import '/const/colors.dart';
 
 class AppTextStyles {
   //Bold
+  static const TextStyle textBold22 = TextStyle(
+    fontSize: 22,
+    fontFamily: "SpoqahansansneoBold",
+  );
   static const TextStyle textBold18 = TextStyle(
     fontSize: 18,
     fontFamily: "SpoqahansansneoBold",
