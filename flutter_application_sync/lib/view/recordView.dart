@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_sync/components/music.dart';
-import 'package:flutter_application_sync/components/music_box.dart';
-import 'package:flutter_application_sync/components/sync_bar.dart';
+import 'package:Sync/components/music.dart';
+import 'package:Sync/components/music_box.dart';
+import 'package:Sync/components/sync_bar.dart';
 import '/const/colors.dart';
 
 class RecordView extends StatelessWidget {

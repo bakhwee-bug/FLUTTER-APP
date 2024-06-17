@@ -1,4 +1,4 @@
-name: flutter_application_sync
+name: Sync
 description: "A new Flutter project."
 
 publish_to: "none" # Remove this line if you wish to publish to pub.dev
@@ -11,13 +11,20 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  flutter_native_splash: ^2.0.5+1
   cupertino_icons: ^1.0.6
   card_swiper: ^3.0.1
+  flutter_svg: ^2.0.10
+  hive: ^2.2.3
+  hive_flutter: ^1.1.0
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_lints: ^3.0.0
+  flutter_lints: ^4.0.0
+  hive_generator: ^2.0.1
+  build_runner: ^2.4.11
+
 flutter:
   uses-material-design: true
   assets:
@@ -32,3 +39,14 @@ flutter:
     - family: SpoqahansansneoMedium
       fonts:
         - asset: assets/fonts/spoqahansansneo_medium.ttf
+
+flutter_native_splash:
+  color: "#ffffff"
+  image: assets/images/img_splash.png
+  android: true
+  ios: true
+  web: true
+  android_gravity: center
+  ios_content_mode: scaleAspectFill
+  web_image_mode: center
+  fullscreen: true

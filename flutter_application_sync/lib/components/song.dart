@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_sync/const/colors.dart';
-import 'package:flutter_application_sync/const/styles.dart';
+import 'package:Sync/const/colors.dart';
+import 'package:Sync/const/styles.dart';
 
 class Song extends StatelessWidget {
   final String songTitle;
@@ -33,18 +33,20 @@ class Song extends StatelessWidget {
           borderRadius: BorderRadius.circular(13),
         ),
         child: Padding(
-            padding: const EdgeInsets.all(12),
+            padding: const EdgeInsets.fromLTRB(10, 12, 10, 5),
             child: Column(
               children: [
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(10),
-                  child: Image.asset(
-                    albumPicture,
-                    width: 125,
-                    height: 125,
-                    fit: BoxFit.cover,
-                  ),
-                ),
+                Padding(
+                    padding: EdgeInsets.only(bottom: 8.0),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(10),
+                      child: Image.asset(
+                        albumPicture,
+                        width: 130,
+                        height: 130,
+                        fit: BoxFit.cover,
+                      ),
+                    )),
                 Text(
                   songTitle,
                   style: AppTextStyles.textBold16,
@@ -55,7 +57,7 @@ class Song extends StatelessWidget {
                 ),
                 Text(
                   albumName,
-                  style: AppTextStyles.textMedium10,
+                  style: AppTextStyles.textMedium12,
                 ),
               ],
             )));

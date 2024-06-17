@@ -1,7 +1,7 @@
 // music.dart
 import 'package:flutter/material.dart';
-import 'package:flutter_application_sync/const/styles.dart';
-import 'package:flutter_application_sync/view/record.dart'; // Record 페이지를 위한 임포트 추가
+import 'package:Sync/const/styles.dart';
+import 'package:Sync/view/record.dart'; // Record 페이지를 위한 임포트 추가
 
 class Music extends StatelessWidget {
   final String musicTitle;

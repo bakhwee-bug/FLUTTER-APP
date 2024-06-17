@@ -17,7 +17,10 @@ class AppTextStyles {
     fontFamily: "SpoqahansansneoBold",
     color: black_50,
   );
-
+  static const TextStyle textBold15 = TextStyle(
+    fontSize: 15,
+    fontFamily: "SpoqahansansneoBold",
+  );
   static const TextStyle textBold16 = TextStyle(
     fontSize: 16,
     fontFamily: "SpoqahansansneoBold",

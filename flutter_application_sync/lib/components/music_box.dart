@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_sync/components/music.dart';
-import 'package:flutter_application_sync/const/styles.dart';
-import 'package:flutter_application_sync/components/musics.dart';
+import 'package:Sync/components/music.dart';
+import 'package:Sync/const/styles.dart';
+import 'package:Sync/components/musics.dart';
 
 import '/const/colors.dart';
 

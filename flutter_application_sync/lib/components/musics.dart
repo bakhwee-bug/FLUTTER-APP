@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_sync/components/music.dart';
+import 'package:Sync/components/music.dart';
 
 class Musics extends StatelessWidget {
   final List<Music> musicList;

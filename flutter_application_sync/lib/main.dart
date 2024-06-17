@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_sync/view/mainView.dart';
-import 'package:flutter_application_sync/view/myView.dart';
-import 'package:flutter_application_sync/view/recordView.dart';
+import 'package:Sync/view/mainView.dart';
+import 'package:Sync/view/myView.dart';
+import 'package:Sync/view/recordView.dart';
 import '/const/colors.dart';
 
 void main() {
@@ -19,6 +19,17 @@ class MyApp extends StatelessWidget {
       title: 'Sync',
       debugShowCheckedModeBanner: false,
       home: const MyHomePage(title: 'Sync'),
+      theme: ThemeData(
+        pageTransitionsTheme: const PageTransitionsTheme(
+          builders: <TargetPlatform, PageTransitionsBuilder>{
+            TargetPlatform.android: CupertinoPageTransitionsBuilder(),
+            TargetPlatform.windows: CupertinoPageTransitionsBuilder(),
+            TargetPlatform.iOS: CupertinoPageTransitionsBuilder(),
+            TargetPlatform.linux: CupertinoPageTransitionsBuilder(),
+            TargetPlatform.macOS: CupertinoPageTransitionsBuilder(),
+          },
+        ),
+      ),
     );
   }
 }

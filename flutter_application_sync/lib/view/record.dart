@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_sync/const/colors.dart';
-import 'package:flutter_application_sync/const/styles.dart';
+import 'package:Sync/const/colors.dart';
+import 'package:Sync/const/styles.dart';
 
 class Record extends StatelessWidget {
   final String musicTitle;

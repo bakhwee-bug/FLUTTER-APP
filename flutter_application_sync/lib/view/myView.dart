@@ -1,8 +1,42 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_sync/components/sync_bar.dart';
+import 'package:Sync/components/song.dart';
+import 'package:Sync/components/song_box.dart';
+import 'package:Sync/components/sync_bar.dart';
 import '/const/colors.dart';
 
 class MyView extends StatelessWidget {
+  List<Song> songList = [
+    Song(
+      songTitle: 'Song 1',
+      artistName: 'Artist 1',
+      albumName: 'Album 1',
+      albumPicture: 'assets/images/Album_image_iveswitch.jpg',
+    ),
+    Song(
+      songTitle: 'Song 2',
+      artistName: 'Artist 2',
+      albumName: 'Album 2',
+      albumPicture: 'assets/images/Album_image_borntobexx.jpg',
+    ),
+    Song(
+      songTitle: 'Song 3',
+      artistName: 'Artist 2',
+      albumName: 'Album 2',
+      albumPicture: 'assets/images/Album_image_borntobexx.jpg',
+    ),
+    Song(
+      songTitle: 'Song 4',
+      artistName: 'Artist 2',
+      albumName: 'Album 2',
+      albumPicture: 'assets/images/Album_image_borntobexx.jpg',
+    ),
+    Song(
+      songTitle: 'Song 5',
+      artistName: 'Artist 2',
+      albumName: 'Album 2',
+      albumPicture: 'assets/images/Album_image_borntobexx.jpg',
+    ),
+  ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -17,7 +51,11 @@ class MyView extends StatelessWidget {
               Expanded(
                   child: SingleChildScrollView(
                 scrollDirection: Axis.vertical,
-                child: Column(),
+                child: Column(
+                  children: [
+                    SongBox(title: '박시윤님, \n노래 보관함이에요 😻', songList: songList)
+                  ],
+                ),
               ))
             ],
           ),
