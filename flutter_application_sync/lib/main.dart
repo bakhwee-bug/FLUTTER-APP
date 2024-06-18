@@ -1,11 +1,25 @@
+import 'package:Sync/models/song_model.dart';
+import 'package:Sync/view/ProfileRegistrationView.dart';
 import 'package:flutter/material.dart';
 import 'package:Sync/view/mainView.dart';
 import 'package:Sync/view/myView.dart';
 import 'package:Sync/view/recordView.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import '/const/colors.dart';
 
-void main() {
-  runApp(const MyApp());
+void main() async {
+  await Hive.initFlutter();
+  Hive.registerAdapter(SongAdapter());
+  var box = await Hive.openBox<Song>('songs');
+
+  if (box.isEmpty) {
+    var dummySongs = Song.createDummySongList();
+    for (var song in dummySongs) {
+      box.add(song);
+    }
+  }
+
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -18,7 +32,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Sync',
       debugShowCheckedModeBanner: false,
-      home: const MyHomePage(title: 'Sync'),
+      home: const ProfileRegistrationView(), // 시작 화면 변경
       theme: ThemeData(
         pageTransitionsTheme: const PageTransitionsTheme(
           builders: <TargetPlatform, PageTransitionsBuilder>{

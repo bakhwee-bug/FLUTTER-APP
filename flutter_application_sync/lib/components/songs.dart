@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:Sync/components/song.dart'; // Music 모델을 포함하는 경로가 정확해야 합니다.
 
 class Songs extends StatelessWidget {
-  final List<Song> songList;
+  final List<RecordData> songList;
 
   const Songs({super.key, required this.songList});
 

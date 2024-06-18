@@ -7,7 +7,7 @@ import '/const/colors.dart';
 
 class SongBox extends StatelessWidget {
   final String title;
-  final List<Song> songList;
+  final List<RecordData> songList;
 
   const SongBox({
     super.key,

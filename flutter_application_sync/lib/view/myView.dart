@@ -5,32 +5,32 @@ import 'package:Sync/components/sync_bar.dart';
 import '/const/colors.dart';
 
 class MyView extends StatelessWidget {
-  List<Song> songList = [
-    Song(
+  List<RecordData> songList = [
+    RecordData(
       songTitle: 'Song 1',
       artistName: 'Artist 1',
       albumName: 'Album 1',
       albumPicture: 'assets/images/Album_image_iveswitch.jpg',
     ),
-    Song(
+    RecordData(
       songTitle: 'Song 2',
       artistName: 'Artist 2',
       albumName: 'Album 2',
       albumPicture: 'assets/images/Album_image_borntobexx.jpg',
     ),
-    Song(
+    RecordData(
       songTitle: 'Song 3',
       artistName: 'Artist 2',
       albumName: 'Album 2',
       albumPicture: 'assets/images/Album_image_borntobexx.jpg',
     ),
-    Song(
+    RecordData(
       songTitle: 'Song 4',
       artistName: 'Artist 2',
       albumName: 'Album 2',
       albumPicture: 'assets/images/Album_image_borntobexx.jpg',
     ),
-    Song(
+    RecordData(
       songTitle: 'Song 5',
       artistName: 'Artist 2',
       albumName: 'Album 2',

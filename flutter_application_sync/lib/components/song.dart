@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:Sync/const/colors.dart';
 import 'package:Sync/const/styles.dart';
 
-class Song extends StatelessWidget {
+class RecordData extends StatelessWidget {
   final String songTitle;
   final String artistName;
   final String albumName;
   final String albumPicture;
 
-  const Song({
+  const RecordData({
     super.key,
     required this.songTitle,
     required this.artistName,
