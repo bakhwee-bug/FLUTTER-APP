@@ -57,6 +57,10 @@ class AppTextStyles {
     fontFamily: "SpoqahansansneoMedium",
   );
   //Regular
+  static const TextStyle textRegular16 = TextStyle(
+    fontSize: 16,
+    fontFamily: "SpoqahansansneoRegular",
+  );
   static const TextStyle textRegular14 = TextStyle(
     fontSize: 14,
     fontFamily: "SpoqahansansneoRegular",
