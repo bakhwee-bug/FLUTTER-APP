@@ -1,5 +1,7 @@
+import 'package:Sync/const/colors.dart';
 import 'package:flutter/material.dart';
-import 'package:Sync/main.dart'; // MyApp 클래스가 있는 파일을 임포트
+import 'package:Sync/main.dart';
+import 'package:Sync/const/styles.dart';
 
 class OnboardingCompleteView extends StatelessWidget {
   const OnboardingCompleteView({Key? key}) : super(key: key);
@@ -7,26 +9,41 @@ class OnboardingCompleteView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('온보딩 완료'),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Icon(Icons.check_circle, color: Colors.green, size: 100),
-            SizedBox(height: 16),
-            Text(
+      body: Column(children: [
+        Align(
+          alignment: Alignment.topCenter,
+          child: Padding(
+            padding: const EdgeInsets.only(top: 40), // 원하는 여백 설정
+            child: Text(
               '박시윤님의 가입이 완료되었어요!',
-              style: TextStyle(fontSize: 18),
+              style: AppTextStyles.textBold16.copyWith(color: gray_50),
             ),
-            SizedBox(height: 16),
-            Text(
-              '이제 싱크를 시작해볼까요?',
-              style: TextStyle(fontSize: 16),
-            ),
-            SizedBox(height: 32),
-            ElevatedButton(
+          ),
+        ),
+        Expanded(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Image.asset(
+                'assets/images/ic_done.png',
+                width: 130,
+                height: 130,
+              ),
+              SizedBox(height: 20),
+              Text(
+                '이제 싱크를 시작해볼까요?',
+                style: AppTextStyles.textBold22,
+              ),
+              Text(
+                '김서윤님만을 위한 맞춤 싱크를 확인해 보세요.',
+                style: AppTextStyles.textRegular16.copyWith(color: gray_50),
+              ),
+            ],
+          ),
+        ),
+        Padding(
+            padding: const EdgeInsets.fromLTRB(20, 0, 20, 20),
+            child: TextButton(
               onPressed: () {
                 Navigator.pushReplacement(
                   context,
@@ -35,11 +52,23 @@ class OnboardingCompleteView extends StatelessWidget {
                   ),
                 );
               },
-              child: Text('싱크 시작하기'),
-            ),
-          ],
-        ),
-      ),
+              style: TextButton.styleFrom(
+                minimumSize: Size(double.infinity, 50),
+                backgroundColor: biscay_50,
+                foregroundColor: white,
+                padding: EdgeInsets.all(16.0),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(12),
+                  ),
+                ),
+              ),
+              child: Text(
+                '싱크 시작하기',
+                style: AppTextStyles.textBold16.copyWith(color: white),
+              ),
+            )),
+      ]),
     );
   }
 }
