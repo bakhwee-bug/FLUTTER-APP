@@ -9,8 +9,6 @@ import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:Sync/models/song_model.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:Sync/main.dart'; // Import ProfileData
-import 'package:Sync/models/profile_data.dart';
 
 class Audition {
   final String name;
@@ -69,6 +67,7 @@ class MainView extends StatefulWidget {
 class _MainViewState extends State<MainView> {
   late Box<Song> hotList;
   int _currentIndex = 0; // 현재 페이지 인덱스
+  final List<int> songIds = [3, 4, 5]; // 보여줄 songId 목록
 
   @override
   void initState() {
@@ -88,8 +87,6 @@ class _MainViewState extends State<MainView> {
 
   @override
   Widget build(BuildContext context) {
-    final profileData = ProfileData.of(context);
-
     return Scaffold(
       backgroundColor: white,
       body: SafeArea(
@@ -123,7 +120,7 @@ class _MainViewState extends State<MainView> {
                                   'assets/images/ic_logo_white.svg'),
                               SizedBox(height: 12),
                               Text(
-                                '${profileData?.name ?? '사용자'}님을 위한',
+                                '사용자님을 위한',
                                 style: AppTextStyles.textBold20
                                     .copyWith(color: white),
                               ),
@@ -275,14 +272,20 @@ class _MainViewState extends State<MainView> {
                                     );
                                   }
 
+                                  // songId에 해당하는 노래만 필터링
+                                  final List<Song> filteredSongs = box.values
+                                      .where((song) =>
+                                          songIds.contains(song.songId))
+                                      .toList();
+
                                   return Column(
-                                    children: box.values.map((song) {
+                                    children: filteredSongs.map((song) {
                                       return createHotMusicItem(
                                         title: song.songTitle,
                                         artist: song.artistName,
                                         album: song.albumName,
                                         imagePath: song.albumPicture,
-                                        lyrics: song.lyrics, // null 처리
+                                        lyrics: song.lyrics,
                                         context: context,
                                       );
                                     }).toList(),
