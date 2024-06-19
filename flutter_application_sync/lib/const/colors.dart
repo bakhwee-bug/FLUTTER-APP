@@ -44,3 +44,4 @@ const gray_50 = Color(0xff8E8E8E);
 const gray_70 = Color(0xff555555);
 const gray_90 = Color(0xff404040);
 const gray_100 = Color(0xff111111);
+const gray_80 = Color(0xff383838);
