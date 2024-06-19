@@ -73,7 +73,7 @@ class _MainViewState extends State<MainView> {
   @override
   void initState() {
     super.initState();
-    hotList = Hive.box<Song>('NewSong');
+    hotList = Hive.box<Song>('songsBox');
   }
 
   void _launchURL(String url) async {

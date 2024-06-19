@@ -11,24 +11,13 @@ import '/const/colors.dart';
 void main() async {
   await Hive.initFlutter();
   Hive.registerAdapter(SongAdapter());
-  var box = await Hive.openBox<Song>('NewSong');
-
-  // 기존 데이터 삭제
-  await box.clear();
-
-  if (box.isEmpty) {
-    await saveDummySongs();
-  }
-
-  runApp(MyApp());
-}
-
-Future<void> saveDummySongs() async {
-  var box = await Hive.openBox<Song>('NewSong');
-  var dummySongs = Song.createDummySongList();
-  for (var song in dummySongs) {
+  var box = await Hive.openBox<Song>('songsBox');
+  await box.clear(); // 기존 데이터 삭제
+  var songs = Song.createDummySongList();
+  for (var song in songs) {
     await box.add(song);
   }
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
