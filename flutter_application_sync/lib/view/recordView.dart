@@ -24,118 +24,110 @@ class RecordView extends StatelessWidget {
                 child: Column(
                   children: [
                     MusicBox(
-                        title: '박시윤님\n이전에 직접 불렀던 곡들이에요 🎶',
+                        // title: '박시윤님\n이전에 직접 불렀던 곡들이에요 🎶',
                         musicList: _buildMusicList(context, [
-                          {
-                            "title": "해야 (HEYA)",
-                            "artist": "IVE",
-                            "album": "IVE SWITCH",
-                            "imagePath":
-                                "assets/images/Album_image_iveswitch.jpg",
-                          },
-                          {
-                            "title": "Says It",
-                            "artist": "KISS OF LIFE",
-                            "album": "Born to be XX",
-                            "imagePath":
-                                "assets/images/Album_image_borntobexx.jpg",
-                          },
-                          {
-                            "title": "OMG",
-                            "artist": "New Jeans",
-                            "album": "NJWMX",
-                            "imagePath": "assets/images/Album_image_NJWMX.jpg",
-                          },
-                          {
-                            "title": "고민중독",
-                            "artist": "QWER",
-                            "album": "MANITO",
-                            "imagePath": "assets/images/Album_image_MANITO.jpg",
-                          },
-                          {
-                            "title": "Better Things",
-                            "artist": "aespa",
-                            "album": "Better Things",
-                            "imagePath":
-                                "assets/images/Album_image_betterthings.jpg",
-                          },
-                        ])),
+                      {
+                        "title": "해야 (HEYA)",
+                        "artist": "IVE",
+                        "album": "IVE SWITCH",
+                        "imagePath": "assets/images/Album_image_iveswitch.jpg",
+                      },
+                      {
+                        "title": "Says It",
+                        "artist": "KISS OF LIFE",
+                        "album": "Born to be XX",
+                        "imagePath": "assets/images/Album_image_borntobexx.jpg",
+                      },
+                      {
+                        "title": "OMG",
+                        "artist": "New Jeans",
+                        "album": "NJWMX",
+                        "imagePath": "assets/images/Album_image_NJWMX.jpg",
+                      },
+                      {
+                        "title": "고민중독",
+                        "artist": "QWER",
+                        "album": "MANITO",
+                        "imagePath": "assets/images/Album_image_MANITO.jpg",
+                      },
+                      {
+                        "title": "Better Things",
+                        "artist": "aespa",
+                        "album": "Better Things",
+                        "imagePath":
+                            "assets/images/Album_image_betterthings.jpg",
+                      },
+                    ])),
                     MusicBox(
-                        title: '음역대에 맞는 노래 추천해드려요 👍',
+                        // title: '음역대에 맞는 노래 추천해드려요 👍',
                         musicList: _buildMusicList(context, [
-                          {
-                            "title": "해야 (HEYA)",
-                            "artist": "IVE",
-                            "album": "IVE SWITCH",
-                            "imagePath":
-                                "assets/images/Album_image_iveswitch.jpg",
-                          },
-                          {
-                            "title": "Says It",
-                            "artist": "KISS OF LIFE",
-                            "album": "Born to be XX",
-                            "imagePath":
-                                "assets/images/Album_image_borntobexx.jpg",
-                          },
-                          {
-                            "title": "OMG",
-                            "artist": "New Jeans",
-                            "album": "NJWMX",
-                            "imagePath": "assets/images/Album_image_NJWMX.jpg",
-                          },
-                          {
-                            "title": "해야 (HEYA)",
-                            "artist": "IVE",
-                            "album": "IVE SWITCH",
-                            "imagePath":
-                                "assets/images/Album_image_iveswitch.jpg",
-                          },
-                          {
-                            "title": "Better Things",
-                            "artist": "aespa",
-                            "album": "Better Things",
-                            "imagePath":
-                                "assets/images/Album_image_betterthings.jpg",
-                          },
-                        ])),
+                      {
+                        "title": "해야 (HEYA)",
+                        "artist": "IVE",
+                        "album": "IVE SWITCH",
+                        "imagePath": "assets/images/Album_image_iveswitch.jpg",
+                      },
+                      {
+                        "title": "Says It",
+                        "artist": "KISS OF LIFE",
+                        "album": "Born to be XX",
+                        "imagePath": "assets/images/Album_image_borntobexx.jpg",
+                      },
+                      {
+                        "title": "OMG",
+                        "artist": "New Jeans",
+                        "album": "NJWMX",
+                        "imagePath": "assets/images/Album_image_NJWMX.jpg",
+                      },
+                      {
+                        "title": "해야 (HEYA)",
+                        "artist": "IVE",
+                        "album": "IVE SWITCH",
+                        "imagePath": "assets/images/Album_image_iveswitch.jpg",
+                      },
+                      {
+                        "title": "Better Things",
+                        "artist": "aespa",
+                        "album": "Better Things",
+                        "imagePath":
+                            "assets/images/Album_image_betterthings.jpg",
+                      },
+                    ])),
                     MusicBox(
-                        title: '20대 여성에게 인기 많은 곡 추천드려요 👍',
+                        // title: '20대 여성에게 인기 많은 곡 추천드려요 👍',
                         musicList: _buildMusicList(context, [
-                          {
-                            "title": "해야 (HEYA)",
-                            "artist": "IVE",
-                            "album": "IVE SWITCH",
-                            "imagePath":
-                                "assets/images/Album_image_iveswitch.jpg",
-                          },
-                          {
-                            "title": "Says It",
-                            "artist": "KISS OF LIFE",
-                            "album": "Born to be XX",
-                            "imagePath":
-                                "assets/images/Album_image_borntobexx.jpg",
-                          },
-                          {
-                            "title": "OMG",
-                            "artist": "New Jeans",
-                            "album": "NJWMX",
-                            "imagePath": "assets/images/Album_image_NJWMX.jpg",
-                          },
-                          {
-                            "title": "해야 (HEYA)",
-                            "artist": "IVE",
-                            "album": "IVE SWITCH",
-                            "imagePath":
-                                "assets/images/Album_image_iveswitch.jpg",
-                          },
-                          {
-                            "title": "Better Things",
-                            "artist": "aespa",
-                            "album": "Better Things",
-                            "imagePath":
-                                "assets/images/Album_image_betterthings.jpg",
-                          },
-                        ]))
+                      {
+                        "title": "해야 (HEYA)",
+                        "artist": "IVE",
+                        "album": "IVE SWITCH",
+                        "imagePath": "assets/images/Album_image_iveswitch.jpg",
+                      },
+                      {
+                        "title": "Says It",
+                        "artist": "KISS OF LIFE",
+                        "album": "Born to be XX",
+                        "imagePath": "assets/images/Album_image_borntobexx.jpg",
+                      },
+                      {
+                        "title": "OMG",
+                        "artist": "New Jeans",
+                        "album": "NJWMX",
+                        "imagePath": "assets/images/Album_image_NJWMX.jpg",
+                      },
+                      {
+                        "title": "해야 (HEYA)",
+                        "artist": "IVE",
+                        "album": "IVE SWITCH",
+                        "imagePath": "assets/images/Album_image_iveswitch.jpg",
+                      },
+                      {
+                        "title": "Better Things",
+                        "artist": "aespa",
+                        "album": "Better Things",
+                        "imagePath":
+                            "assets/images/Album_image_betterthings.jpg",
+                      },
+                    ]))
                   ],
                 ),
               ),

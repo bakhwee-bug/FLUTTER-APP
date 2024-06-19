@@ -7,6 +7,7 @@ class HotMusic extends StatelessWidget {
   final String artistName;
   final String albumName;
   final String albumPicture;
+  final String lyrics;
   final VoidCallback onTap;
 
   const HotMusic({
@@ -16,6 +17,7 @@ class HotMusic extends StatelessWidget {
     required this.albumName,
     required this.albumPicture,
     required this.onTap,
+    required this.lyrics,
   });
 
   @override
@@ -32,8 +34,8 @@ class HotMusic extends StatelessWidget {
                 borderRadius: BorderRadius.circular(10.0),
                 child: Image.asset(
                   albumPicture,
-                  width: 60.0,
-                  height: 60.0,
+                  width: 70.0,
+                  height: 70.0,
                   fit: BoxFit.cover,
                 ),
               ),
@@ -46,11 +48,11 @@ class HotMusic extends StatelessWidget {
                   children: [
                     Text(
                       musicTitle,
-                      style: AppTextStyles.textBold15,
+                      style: AppTextStyles.textRegular18,
                     ),
                     Text(
                       artistName,
-                      style: AppTextStyles.textMedium12,
+                      style: AppTextStyles.textRegular14,
                     ),
                   ],
                 ),
@@ -66,6 +68,7 @@ HotMusic createHotMusicItem({
   required String artist,
   required String album,
   required String imagePath,
+  required String lyrics,
   required BuildContext context,
 }) {
   return HotMusic(
@@ -73,6 +76,7 @@ HotMusic createHotMusicItem({
     artistName: artist,
     albumName: album,
     albumPicture: imagePath,
+    lyrics: lyrics,
     onTap: () {
       Navigator.push(
         context,
@@ -82,28 +86,7 @@ HotMusic createHotMusicItem({
             artistName: artist,
             albumName: album,
             albumPicture: imagePath,
-            lyrics: 'Baby (baby), got me looking so crazy\n'
-                '백점받는 daydream (daydream)\n'
-                'Got me feeling you 너도 말해줄래?\n'
-                '누가 내게 귀엽다 봐줄때는 답할 넌\n'
-                'Maybe you could be the one (one)\n'
-                '난 만약만 한번 I\'m not looking for just fun\n'
-                'Maybe I could be the one\n'
-                'Oh, baby (baby)\n'
-                '예민하다 내 lately (lately)\n'
-                '넌 없이는 매일 매일이 yeah (매일이 yeah)\n'
-                '채미 없어, 어쩌지?\n'
-                'Baby (baby), got me looking so crazy\n'
-                '백점받는 daydream (daydream)\n'
-                'Got me feeling you 너도 말해줄래?\n'
-                '누가 내게 귀엽다 봐줄때는 답할 넌\n'
-                'Maybe you could be the one (one)\n'
-                '난 만약만 한번 I\'m not looking for just fun\n'
-                'Maybe I could be the one\n'
-                'Oh, baby (baby)\n'
-                '예민하다 내 lately (lately)\n'
-                '넌 없이는 매일 매일이 yeah (매일이 yeah)\n'
-                '채미 없어, 어쩌지?',
+            lyrics: lyrics,
           ),
         ),
       );

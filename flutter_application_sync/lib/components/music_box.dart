@@ -6,12 +6,10 @@ import 'package:Sync/components/musics.dart';
 import '/const/colors.dart';
 
 class MusicBox extends StatelessWidget {
-  final String title;
   final List<Music> musicList;
 
   const MusicBox({
     super.key,
-    required this.title,
     required this.musicList,
   });
   @override
@@ -23,10 +21,6 @@ class MusicBox extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            title,
-            style: AppTextStyles.textBold18, // 정의된 텍스트 스타일 사용
-          ),
           Musics(musicList: musicList),
         ],
       ),
