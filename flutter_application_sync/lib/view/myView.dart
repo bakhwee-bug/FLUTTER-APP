@@ -3,8 +3,16 @@ import 'package:Sync/components/song.dart';
 import 'package:Sync/components/song_box.dart';
 import 'package:Sync/components/sync_bar.dart';
 import '/const/colors.dart';
+import 'package:Sync/const/styles.dart';
 
-class MyView extends StatelessWidget {
+class MyView extends StatefulWidget {
+  const MyView({super.key});
+
+  @override
+  _MyViewState createState() => _MyViewState();
+}
+
+class _MyViewState extends State<MyView> {
   List<RecordData> songList = [
     RecordData(
       songTitle: 'Song 1',
@@ -37,28 +45,46 @@ class MyView extends StatelessWidget {
       albumPicture: 'assets/images/Album_image_borntobexx.jpg',
     ),
   ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: secondaryColor,
-        body: SafeArea(
-          top: true,
-          child: Column(
-            children: [
-              //Appbar
-              Syncbar(barImage: 'assets/images/sync_logo.png'),
-              //songs
-              Expanded(
-                  child: SingleChildScrollView(
+      backgroundColor: white,
+      body: SafeArea(
+        top: true,
+        child: Column(
+          children: [
+            //Appbar
+            Syncbar(barImage: 'assets/images/sync_logo.png'),
+            //songs
+            Expanded(
+              child: SingleChildScrollView(
+                padding: const EdgeInsets.fromLTRB(23, 8, 23, 20),
                 scrollDirection: Axis.vertical,
                 child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    SongBox(title: '박시윤님, \n노래 보관함이에요 😻', songList: songList)
+                    Text.rich(
+                      TextSpan(
+                        children: [
+                          TextSpan(
+                              text: '박시윤',
+                              style: AppTextStyles.textBold20
+                                  .copyWith(color: biscay_50)),
+                          const TextSpan(
+                              text: '님, \n노래 보관함이에요😻',
+                              style: AppTextStyles.textBold20),
+                        ],
+                      ),
+                    ),
+                    SongBox(songList: songList)
                   ],
                 ),
-              ))
-            ],
-          ),
-        ));
+              ),
+            )
+          ],
+        ),
+      ),
+    );
   }
 }

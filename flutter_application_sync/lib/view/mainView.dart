@@ -58,7 +58,18 @@ final List<Audition> auditions = [
 ];
 
 class MainView extends StatefulWidget {
-  const MainView({super.key});
+  final String name;
+  final int gender;
+  final int age;
+  final String voiceRange;
+
+  const MainView({
+    super.key,
+    required this.name,
+    required this.gender,
+    required this.age,
+    required this.voiceRange,
+  });
 
   @override
   _MainViewState createState() => _MainViewState();
@@ -119,7 +130,7 @@ class _MainViewState extends State<MainView> {
                                   'assets/images/ic_logo_white.svg'),
                               SizedBox(height: 12),
                               Text(
-                                '박시윤님을 위한',
+                                '${widget.name}님을 위한',
                                 style: AppTextStyles.textBold20
                                     .copyWith(color: white),
                               ),

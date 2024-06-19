@@ -216,7 +216,11 @@ class _ProfileRegistrationViewState extends State<ProfileRegistrationView> {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => VoiceRangeSelectionView(),
+                              builder: (context) => VoiceRangeSelectionView(
+                                name: _textController.text,
+                                gender: _selectedGender,
+                                age: _selectedAge,
+                              ),
                             ),
                           );
                         }

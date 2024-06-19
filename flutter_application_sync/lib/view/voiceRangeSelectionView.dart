@@ -4,7 +4,16 @@ import 'package:flutter/material.dart';
 import '/const/colors.dart';
 
 class VoiceRangeSelectionView extends StatefulWidget {
-  const VoiceRangeSelectionView({Key? key}) : super(key: key);
+  final String name;
+  final int gender;
+  final int age;
+
+  const VoiceRangeSelectionView({
+    Key? key,
+    required this.name,
+    required this.gender,
+    required this.age,
+  }) : super(key: key);
 
   @override
   _VoiceRangeSelectionViewState createState() =>
@@ -104,7 +113,12 @@ class _VoiceRangeSelectionViewState extends State<VoiceRangeSelectionView> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => OnboardingCompleteView(),
+                            builder: (context) => OnboardingCompleteView(
+                              name: widget.name,
+                              gender: widget.gender,
+                              age: widget.age,
+                              voiceRange: _selectedVoiceRange!,
+                            ),
                           ),
                         );
                       }

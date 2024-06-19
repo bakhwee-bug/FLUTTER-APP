@@ -57,9 +57,20 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
-
   final String title;
+  final String name;
+  final int gender;
+  final int age;
+  final String voiceRange;
+
+  const MyHomePage({
+    super.key,
+    required this.title,
+    required this.name,
+    required this.gender,
+    required this.age,
+    required this.voiceRange,
+  });
 
   @override
   State<MyHomePage> createState() => _MyHomePageState();
@@ -68,11 +79,18 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   int _selectedIndex = 0;
 
-  final List<Widget> _navIndex = [
-    MainView(),
-    RecordView(),
-    MyView(),
-  ];
+  List<Widget> _navIndex(String name, int gender, int age, String voiceRange) {
+    return [
+      MainView(
+        name: name,
+        gender: gender,
+        age: age,
+        voiceRange: voiceRange,
+      ),
+      RecordView(),
+      MyView(),
+    ];
+  }
 
   void _onNavTapped(int index) {
     setState(() {
@@ -83,7 +101,8 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: _navIndex.elementAt(_selectedIndex),
+      body: _navIndex(widget.name, widget.gender, widget.age, widget.voiceRange)
+          .elementAt(_selectedIndex),
       bottomNavigationBar: Container(
         decoration: BoxDecoration(
           boxShadow: [

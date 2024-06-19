@@ -4,7 +4,18 @@ import 'package:Sync/main.dart';
 import 'package:Sync/const/styles.dart';
 
 class OnboardingCompleteView extends StatelessWidget {
-  const OnboardingCompleteView({Key? key}) : super(key: key);
+  final String name;
+  final int gender;
+  final int age;
+  final String voiceRange;
+
+  const OnboardingCompleteView({
+    Key? key,
+    required this.name,
+    required this.gender,
+    required this.age,
+    required this.voiceRange,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +27,7 @@ class OnboardingCompleteView extends StatelessWidget {
           child: Padding(
             padding: const EdgeInsets.only(top: 40), // 원하는 여백 설정
             child: Text(
-              '박시윤님의 가입이 완료되었어요!',
+              '${name}님의 가입이 완료되었어요!',
               style: AppTextStyles.textBold16.copyWith(color: gray_50),
             ),
           ),
@@ -36,7 +47,7 @@ class OnboardingCompleteView extends StatelessWidget {
                 style: AppTextStyles.textBold22,
               ),
               Text(
-                '김서윤님만을 위한 맞춤 싱크를 확인해 보세요.',
+                '${name}님만을 위한 맞춤 싱크를 확인해 보세요.',
                 style: AppTextStyles.textRegular16.copyWith(color: gray_50),
               ),
             ],
@@ -49,7 +60,13 @@ class OnboardingCompleteView extends StatelessWidget {
                 Navigator.pushReplacement(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => MyHomePage(title: 'Sync'),
+                    builder: (context) => MyHomePage(
+                      title: 'Sync',
+                      name: name,
+                      gender: gender,
+                      age: age,
+                      voiceRange: voiceRange,
+                    ),
                   ),
                 );
               },

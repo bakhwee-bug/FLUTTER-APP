@@ -15,9 +15,9 @@ class MusicBox extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      padding: const EdgeInsets.fromLTRB(0, 0, 0, 20),
       width: MediaQuery.of(context).size.width,
       color: white,
-      padding: const EdgeInsets.fromLTRB(20, 8, 0, 20),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
