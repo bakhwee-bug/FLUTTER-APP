@@ -9,6 +9,7 @@ class OnboardingCompleteView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: white,
       body: Column(children: [
         Align(
           alignment: Alignment.topCenter,
