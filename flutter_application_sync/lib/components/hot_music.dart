@@ -34,8 +34,8 @@ class HotMusic extends StatelessWidget {
                 borderRadius: BorderRadius.circular(10.0),
                 child: Image.asset(
                   albumPicture,
-                  width: 70.0,
-                  height: 70.0,
+                  width: 60.0,
+                  height: 60.0,
                   fit: BoxFit.cover,
                 ),
               ),
@@ -48,7 +48,10 @@ class HotMusic extends StatelessWidget {
                   children: [
                     Text(
                       musicTitle,
-                      style: AppTextStyles.textRegular18,
+                      style: AppTextStyles.textRegular16,
+                    ),
+                    SizedBox(
+                      height: 5,
                     ),
                     Text(
                       artistName,

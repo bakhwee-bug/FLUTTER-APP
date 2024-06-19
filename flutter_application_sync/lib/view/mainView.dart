@@ -12,14 +12,14 @@ import 'package:url_launcher/url_launcher.dart';
 
 class Audition {
   final String name;
-  final String location;
+  final String eligibility;
   final String date;
   final String imageUrl;
   final String url;
 
   Audition({
     required this.name,
-    required this.location,
+    required this.eligibility,
     required this.date,
     required this.imageUrl,
     required this.url,
@@ -29,17 +29,31 @@ class Audition {
 final List<Audition> auditions = [
   Audition(
     name: '어도어 글로벌 오디션',
-    location: '서울 종로',
-    date: '4/22 (월) 오후 4시',
+    eligibility: '2005년~2011년생',
+    date: '상시모집',
     imageUrl: 'assets/images/audition_ador.jpg',
     url: 'https://ador.world/audition.html',
   ),
   Audition(
-    name: '네이버 글로벌 오디션',
-    location: '서울 종로',
-    date: '4/22 (월) 오후 4시',
+    name: 'SMNGG 2024',
+    eligibility: '2005년~2011년생',
+    date: '~6월 22일',
     imageUrl: 'assets/images/audition_sm.jpg',
     url: 'https://audition.smtown.com/smngg_2024',
+  ),
+  Audition(
+    name: '빅히트 오디션',
+    eligibility: '2006년 이후 출생',
+    date: '~8월 31일',
+    imageUrl: 'assets/images/audition_bigheat.png',
+    url: 'https://www.bighitaudition.com',
+  ),
+  Audition(
+    name: 'Bpm 오디션',
+    eligibility: '무관',
+    date: '상시모집',
+    imageUrl: 'assets/images/audition_bigplanet.jpg',
+    url: 'http://www.bpment.co.kr/bpm/audition.do?lang=ko',
   ),
 ];
 
@@ -106,12 +120,12 @@ class _MainViewState extends State<MainView> {
                               SizedBox(height: 12),
                               Text(
                                 '박시윤님을 위한',
-                                style: AppTextStyles.textBold22
+                                style: AppTextStyles.textBold20
                                     .copyWith(color: white),
                               ),
                               Text(
                                 '싱크를 추천드려요!',
-                                style: AppTextStyles.textBold22
+                                style: AppTextStyles.textBold20
                                     .copyWith(color: white),
                               ),
                             ],
@@ -187,18 +201,18 @@ class _MainViewState extends State<MainView> {
                                         children: [
                                           Text(
                                             audition.name,
-                                            style: AppTextStyles.textBold22
+                                            style: AppTextStyles.textBold20
                                                 .copyWith(color: white),
                                           ),
                                           SizedBox(height: 4),
                                           Row(
                                             children: [
-                                              Icon(Icons.place,
+                                              Icon(Icons.person,
                                                   color: Colors.white,
                                                   size: 16),
                                               SizedBox(width: 4),
                                               Text(
-                                                audition.location,
+                                                audition.eligibility,
                                                 style: AppTextStyles
                                                     .textRegular14
                                                     .copyWith(color: white),
@@ -233,17 +247,17 @@ class _MainViewState extends State<MainView> {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text('현재 HOT한', style: AppTextStyles.textBold22),
+                              Text('현재 HOT한', style: AppTextStyles.textBold20),
                               Text.rich(
                                 TextSpan(
                                   children: [
                                     TextSpan(
                                         text: '커버 노래 ',
-                                        style: AppTextStyles.textBold22
+                                        style: AppTextStyles.textBold20
                                             .copyWith(color: biscay_50)),
                                     const TextSpan(
                                         text: '추천해드려요 👌',
-                                        style: AppTextStyles.textBold22),
+                                        style: AppTextStyles.textBold20),
                                   ],
                                 ),
                               ),
