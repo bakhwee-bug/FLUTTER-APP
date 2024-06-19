@@ -1,4 +1,5 @@
 import 'package:Sync/components/hot_music.dart';
+import 'package:Sync/models/profile_data.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/svg.dart';
@@ -87,6 +88,8 @@ class _MainViewState extends State<MainView> {
 
   @override
   Widget build(BuildContext context) {
+    final profileData = ProfileData.of(context);
+
     return Scaffold(
       backgroundColor: white,
       body: SafeArea(
@@ -120,7 +123,7 @@ class _MainViewState extends State<MainView> {
                                   'assets/images/ic_logo_white.svg'),
                               SizedBox(height: 12),
                               Text(
-                                '사용자님을 위한',
+                                '${profileData?.name ?? '사용자'}님을 위한',
                                 style: AppTextStyles.textBold20
                                     .copyWith(color: white),
                               ),
