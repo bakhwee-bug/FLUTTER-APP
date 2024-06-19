@@ -9,6 +9,8 @@ import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:Sync/models/song_model.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:Sync/main.dart'; // Import ProfileData
+import 'package:Sync/models/profile_data.dart';
 
 class Audition {
   final String name;
@@ -58,18 +60,7 @@ final List<Audition> auditions = [
 ];
 
 class MainView extends StatefulWidget {
-  final String name;
-  final int gender;
-  final int age;
-  final String voiceRange;
-
-  const MainView({
-    super.key,
-    required this.name,
-    required this.gender,
-    required this.age,
-    required this.voiceRange,
-  });
+  const MainView({super.key});
 
   @override
   _MainViewState createState() => _MainViewState();
@@ -97,6 +88,8 @@ class _MainViewState extends State<MainView> {
 
   @override
   Widget build(BuildContext context) {
+    final profileData = ProfileData.of(context);
+
     return Scaffold(
       backgroundColor: white,
       body: SafeArea(
@@ -130,7 +123,7 @@ class _MainViewState extends State<MainView> {
                                   'assets/images/ic_logo_white.svg'),
                               SizedBox(height: 12),
                               Text(
-                                '${widget.name}님을 위한',
+                                '${profileData?.name ?? '사용자'}님을 위한',
                                 style: AppTextStyles.textBold20
                                     .copyWith(color: white),
                               ),

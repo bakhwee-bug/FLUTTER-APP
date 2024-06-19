@@ -5,8 +5,8 @@ import '/const/colors.dart';
 
 class VoiceRangeSelectionView extends StatefulWidget {
   final String name;
-  final int gender;
-  final int age;
+  final String gender;
+  final String age;
 
   const VoiceRangeSelectionView({
     Key? key,

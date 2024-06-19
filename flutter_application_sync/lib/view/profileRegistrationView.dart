@@ -23,6 +23,42 @@ class _ProfileRegistrationViewState extends State<ProfileRegistrationView> {
         _selectedAge != -1;
   }
 
+  String getGenderString(int index) {
+    switch (index) {
+      case 0:
+        return '남성';
+      case 1:
+        return '여성';
+      case 2:
+        return '남녀';
+      default:
+        return '';
+    }
+  }
+
+  String getAgeString(int index) {
+    switch (index) {
+      case 0:
+        return '10대 미만';
+      case 1:
+        return '10대';
+      case 2:
+        return '20대';
+      case 3:
+        return '30대';
+      case 4:
+        return '40대';
+      case 5:
+        return '50대';
+      case 6:
+        return '60대 이상';
+      case 7:
+        return '전연령대';
+      default:
+        return '';
+    }
+  }
+
   Widget _buildCustomChip(
       String label, int index, bool isSelected, Function(int) onSelected) {
     return GestureDetector(
@@ -126,13 +162,13 @@ class _ProfileRegistrationViewState extends State<ProfileRegistrationView> {
                       childAspectRatio: 2,
                       physics: NeverScrollableScrollPhysics(),
                       children: [
-                        _buildCustomChip('남자', 0, _selectedGender == 0,
+                        _buildCustomChip('남성', 0, _selectedGender == 0,
                             (index) {
                           setState(() {
                             _selectedGender = index;
                           });
                         }),
-                        _buildCustomChip('여자', 1, _selectedGender == 1,
+                        _buildCustomChip('여성', 1, _selectedGender == 1,
                             (index) {
                           setState(() {
                             _selectedGender = index;
@@ -218,8 +254,8 @@ class _ProfileRegistrationViewState extends State<ProfileRegistrationView> {
                             MaterialPageRoute(
                               builder: (context) => VoiceRangeSelectionView(
                                 name: _textController.text,
-                                gender: _selectedGender,
-                                age: _selectedAge,
+                                gender: getGenderString(_selectedGender),
+                                age: getAgeString(_selectedAge),
                               ),
                             ),
                           );

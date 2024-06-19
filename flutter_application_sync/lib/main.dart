@@ -5,6 +5,7 @@ import 'package:Sync/view/mainView.dart';
 import 'package:Sync/view/myView.dart';
 import 'package:Sync/view/recordView.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:Sync/models/profile_data.dart';
 import '/const/colors.dart';
 
 void main() async {
@@ -59,8 +60,8 @@ class MyApp extends StatelessWidget {
 class MyHomePage extends StatefulWidget {
   final String title;
   final String name;
-  final int gender;
-  final int age;
+  final String gender;
+  final String age;
   final String voiceRange;
 
   const MyHomePage({
@@ -79,14 +80,9 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   int _selectedIndex = 0;
 
-  List<Widget> _navIndex(String name, int gender, int age, String voiceRange) {
+  List<Widget> _navIndex() {
     return [
-      MainView(
-        name: name,
-        gender: gender,
-        age: age,
-        voiceRange: voiceRange,
-      ),
+      MainView(),
       RecordView(),
       MyView(),
     ];
@@ -100,51 +96,56 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: _navIndex(widget.name, widget.gender, widget.age, widget.voiceRange)
-          .elementAt(_selectedIndex),
-      bottomNavigationBar: Container(
-        decoration: BoxDecoration(
-          boxShadow: [
-            BoxShadow(
-              color: Colors.grey.withOpacity(0.5),
-              spreadRadius: 0,
-              blurRadius: 10,
-              offset: Offset(0, -1),
-            ),
-          ],
-          borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(20),
-            topRight: Radius.circular(20),
-          ),
-        ),
-        child: ClipRRect(
-          borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(20),
-            topRight: Radius.circular(20),
-          ),
-          child: BottomNavigationBar(
-            backgroundColor: Colors.white,
-            fixedColor: primaryColor,
-            unselectedItemColor: unselectedColor,
-            showUnselectedLabels: true,
-            type: BottomNavigationBarType.fixed,
-            items: const [
-              BottomNavigationBarItem(
-                icon: ImageIcon(AssetImage('assets/images/ic_home.png')),
-                label: '홈',
-              ),
-              BottomNavigationBarItem(
-                icon: ImageIcon(AssetImage('assets/images/ic_record.png')),
-                label: '녹음실',
-              ),
-              BottomNavigationBarItem(
-                icon: ImageIcon(AssetImage('assets/images/ic_my.png')),
-                label: '저장실',
+    return ProfileData(
+      name: widget.name,
+      gender: widget.gender,
+      age: widget.age,
+      voiceRange: widget.voiceRange,
+      child: Scaffold(
+        body: _navIndex().elementAt(_selectedIndex),
+        bottomNavigationBar: Container(
+          decoration: BoxDecoration(
+            boxShadow: [
+              BoxShadow(
+                color: Colors.grey.withOpacity(0.5),
+                spreadRadius: 0,
+                blurRadius: 10,
+                offset: Offset(0, -1),
               ),
             ],
-            currentIndex: _selectedIndex,
-            onTap: _onNavTapped,
+            borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(20),
+              topRight: Radius.circular(20),
+            ),
+          ),
+          child: ClipRRect(
+            borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(20),
+              topRight: Radius.circular(20),
+            ),
+            child: BottomNavigationBar(
+              backgroundColor: Colors.white,
+              fixedColor: primaryColor,
+              unselectedItemColor: unselectedColor,
+              showUnselectedLabels: true,
+              type: BottomNavigationBarType.fixed,
+              items: const [
+                BottomNavigationBarItem(
+                  icon: ImageIcon(AssetImage('assets/images/ic_home.png')),
+                  label: '홈',
+                ),
+                BottomNavigationBarItem(
+                  icon: ImageIcon(AssetImage('assets/images/ic_record.png')),
+                  label: '녹음실',
+                ),
+                BottomNavigationBarItem(
+                  icon: ImageIcon(AssetImage('assets/images/ic_my.png')),
+                  label: '저장실',
+                ),
+              ],
+              currentIndex: _selectedIndex,
+              onTap: _onNavTapped,
+            ),
           ),
         ),
       ),

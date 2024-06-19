@@ -4,6 +4,7 @@ import 'package:Sync/components/music_box.dart';
 import 'package:Sync/components/sync_bar.dart';
 import 'package:Sync/const/styles.dart';
 import '/const/colors.dart';
+import 'package:Sync/models/profile_data.dart';
 
 class RecordView extends StatefulWidget {
   const RecordView({super.key});
@@ -48,6 +49,8 @@ class _RecordViewState extends State<RecordView> {
 
   @override
   Widget build(BuildContext context) {
+    final profileData = ProfileData.of(context);
+
     return Scaffold(
       backgroundColor: white,
       body: SafeArea(
@@ -68,7 +71,7 @@ class _RecordViewState extends State<RecordView> {
                       TextSpan(
                         children: [
                           TextSpan(
-                              text: '박시윤',
+                              text: profileData?.name ?? '사용자',
                               style: AppTextStyles.textBold20
                                   .copyWith(color: biscay_50)),
                           const TextSpan(
@@ -85,7 +88,7 @@ class _RecordViewState extends State<RecordView> {
                       TextSpan(
                         children: [
                           TextSpan(
-                              text: '음역대',
+                              text: profileData?.voiceRange ?? '음역대',
                               style: AppTextStyles.textBold20
                                   .copyWith(color: biscay_50)),
                           const TextSpan(
@@ -102,7 +105,8 @@ class _RecordViewState extends State<RecordView> {
                       TextSpan(
                         children: [
                           TextSpan(
-                              text: '20대 여성 ',
+                              text:
+                                  '${profileData?.age ?? '연령대'} ${profileData?.gender ?? '성별'}',
                               style: AppTextStyles.textBold20
                                   .copyWith(color: biscay_50)),
                           const TextSpan(

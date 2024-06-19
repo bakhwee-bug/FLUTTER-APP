@@ -4,6 +4,7 @@ import 'package:Sync/components/song_box.dart';
 import 'package:Sync/components/sync_bar.dart';
 import '/const/colors.dart';
 import 'package:Sync/const/styles.dart';
+import 'package:Sync/models/profile_data.dart';
 
 class MyView extends StatefulWidget {
   const MyView({super.key});
@@ -48,6 +49,8 @@ class _MyViewState extends State<MyView> {
 
   @override
   Widget build(BuildContext context) {
+    final profileData = ProfileData.of(context);
+
     return Scaffold(
       backgroundColor: white,
       body: SafeArea(
@@ -68,7 +71,7 @@ class _MyViewState extends State<MyView> {
                       TextSpan(
                         children: [
                           TextSpan(
-                              text: '박시윤',
+                              text: profileData?.name ?? '사용자',
                               style: AppTextStyles.textBold20
                                   .copyWith(color: biscay_50)),
                           const TextSpan(

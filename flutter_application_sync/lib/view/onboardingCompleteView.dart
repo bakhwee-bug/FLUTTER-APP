@@ -5,8 +5,8 @@ import 'package:Sync/const/styles.dart';
 
 class OnboardingCompleteView extends StatelessWidget {
   final String name;
-  final int gender;
-  final int age;
+  final String gender;
+  final String age;
   final String voiceRange;
 
   const OnboardingCompleteView({
