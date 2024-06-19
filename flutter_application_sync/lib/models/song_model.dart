@@ -5,30 +5,36 @@ part 'song_model.g.dart';
 @HiveType(typeId: 0)
 class Song extends HiveObject {
   @HiveField(0)
-  final String songTitle;
+  final int songId;
 
   @HiveField(1)
-  final String artistName;
+  final String songTitle;
 
   @HiveField(2)
-  final String albumName;
+  final String artistName;
 
   @HiveField(3)
-  final String albumPicture;
+  final String albumName;
 
   @HiveField(4)
+  final String albumPicture;
+
+  @HiveField(5)
   final String lyrics;
 
   Song({
+    required this.songId,
     required this.songTitle,
     required this.artistName,
     required this.albumName,
     required this.albumPicture,
     required this.lyrics,
   });
+
   static List<Song> createDummySongList() {
     return [
       Song(
+          songId: 1,
           songTitle: "해야 (HEYA)",
           artistName: "IVE",
           albumName: "IVE SWITCH",
@@ -102,6 +108,7 @@ class Song extends HiveObject {
               '별안간 홀린 그 순간 bite\n'
               'Da-da-da-dun-dun-dun\n'),
       Song(
+          songId: 2,
           songTitle: "Says It",
           artistName: "KISS OF LIFE",
           albumName: "Born to be XX",
@@ -169,6 +176,7 @@ class Song extends HiveObject {
               'All the things that you taught me was love\n'
               'Mm-mm\n'),
       Song(
+          songId: 3,
           songTitle: "OMG",
           artistName: "New Jeans",
           albumName: "NJWMX",
@@ -236,6 +244,7 @@ class Song extends HiveObject {
               'My heart is glowing, it\'s glowing\n'
               'My heart is glowing up, so I can\'t sleep at night\n'),
       Song(
+          songId: 4,
           songTitle: "고민중독",
           artistName: "QWER",
           albumName: "MANITO",
@@ -271,6 +280,7 @@ class Song extends HiveObject {
               '매일 고민하고 연습했던 말\n'
               '좋아해\n'),
       Song(
+        songId: 5,
         songTitle: "Better Things",
         artistName: "aespa",
         albumName: "Better Things",
@@ -342,6 +352,7 @@ class Song extends HiveObject {
             '(Rhythm on him, rhythm on him, rhythm on him, rhythm on-)\n',
       ),
       Song(
+          songId: 6,
           songTitle: "재연 (An Encore)",
           artistName: "SHINee(샤이니)",
           albumName: "Odd - The 4th Album",
@@ -413,6 +424,7 @@ class Song extends HiveObject {
               '결국 이뤄지는\n'
               '두 주인공처럼\n'),
       Song(
+          songId: 7,
           songTitle: "I’m Crying (Korean Ver.)",
           artistName: "태민(TAEMIN)",
           albumName: "MOVE-ing - The 2nd Album Repackage",

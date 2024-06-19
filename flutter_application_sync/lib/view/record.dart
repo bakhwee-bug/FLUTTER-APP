@@ -85,7 +85,7 @@ class Record extends StatelessWidget {
                 ),
                 child: SingleChildScrollView(
                   child: Padding(
-                    padding: const EdgeInsets.fromLTRB(0, 50, 0, 100),
+                    padding: const EdgeInsets.fromLTRB(20, 50, 20, 100),
                     child: Text(
                       lyrics,
                       textAlign: TextAlign.center,
