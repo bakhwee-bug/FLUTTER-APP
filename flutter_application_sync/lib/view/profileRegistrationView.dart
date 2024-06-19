@@ -89,6 +89,7 @@ class _ProfileRegistrationViewState extends State<ProfileRegistrationView> {
                       style: AppTextStyles.textRegular14,
                     ),
                     TextField(
+                      cursorColor: biscay_50,
                       controller: _textController,
                       focusNode: _focusNode,
                       onChanged: (text) {
@@ -96,7 +97,11 @@ class _ProfileRegistrationViewState extends State<ProfileRegistrationView> {
                       },
                       maxLength: 10,
                       maxLines: 1,
+                      style: AppTextStyles.textRegular16,
                       decoration: InputDecoration(
+                        filled: true,
+                        fillColor: white,
+                        focusColor: biscay_50,
                         isDense: true,
                         focusedBorder: const OutlineInputBorder(
                             borderSide: BorderSide(color: biscay_50),
@@ -104,17 +109,6 @@ class _ProfileRegistrationViewState extends State<ProfileRegistrationView> {
                                 BorderRadius.all(Radius.circular(12))),
                         border: OutlineInputBorder(
                             borderSide: BorderSide(color: biscay_50),
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(12))),
-                        errorBorder: const OutlineInputBorder(
-                            borderSide: BorderSide(color: sub3),
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(12))),
-                        enabledBorder: OutlineInputBorder(
-                            borderSide: BorderSide(
-                                color: _textController.text.length > 10
-                                    ? sub3
-                                    : biscay_50),
                             borderRadius:
                                 BorderRadius.all(Radius.circular(12))),
                       ),
