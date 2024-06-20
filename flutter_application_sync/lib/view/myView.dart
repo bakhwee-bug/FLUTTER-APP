@@ -5,6 +5,7 @@ import 'package:Sync/components/sync_bar.dart';
 import '/const/colors.dart';
 import 'package:Sync/const/styles.dart';
 import 'package:Sync/models/profile_data.dart';
+import 'dart:io';
 
 class MyView extends StatefulWidget {
   const MyView({super.key});
@@ -14,38 +15,36 @@ class MyView extends StatefulWidget {
 }
 
 class _MyViewState extends State<MyView> {
-  List<RecordData> songList = [
-    RecordData(
-      songTitle: 'Song 1',
-      artistName: 'Artist 1',
-      albumName: 'Album 1',
-      albumPicture: 'assets/images/Album_image_iveswitch.jpg',
-    ),
-    RecordData(
-      songTitle: 'Song 2',
-      artistName: 'Artist 2',
-      albumName: 'Album 2',
-      albumPicture: 'assets/images/Album_image_borntobexx.jpg',
-    ),
-    RecordData(
-      songTitle: 'Song 3',
-      artistName: 'Artist 2',
-      albumName: 'Album 2',
-      albumPicture: 'assets/images/Album_image_borntobexx.jpg',
-    ),
-    RecordData(
-      songTitle: 'Song 4',
-      artistName: 'Artist 2',
-      albumName: 'Album 2',
-      albumPicture: 'assets/images/Album_image_borntobexx.jpg',
-    ),
-    RecordData(
-      songTitle: 'Song 5',
-      artistName: 'Artist 2',
-      albumName: 'Album 2',
-      albumPicture: 'assets/images/Album_image_borntobexx.jpg',
-    ),
-  ];
+  List<RecordData> songList = [];
+
+  @override
+  void initState() {
+    super.initState();
+    _loadSongs();
+  }
+
+  void _loadSongs() {
+    Directory dir = Directory('/sdcard/Download');
+    List<FileSystemEntity> files = dir.listSync();
+    List<RecordData> loadedSongs = [];
+
+    for (var file in files) {
+      if (file.path.endsWith('.wav')) {
+        // 노래 파일로부터 정보를 추출하여 RecordData를 생성합니다.
+        // 예시 데이터로 사용합니다.
+        loadedSongs.add(RecordData(
+          songTitle: 'Sample Song',
+          artistName: 'Sample Artist',
+          albumName: 'Sample Album',
+          albumPicture: 'assets/images/Album_image_borntobexx.jpg',
+        ));
+      }
+    }
+
+    setState(() {
+      songList = loadedSongs;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
