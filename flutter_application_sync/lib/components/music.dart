@@ -1,13 +1,14 @@
 // music.dart
 import 'package:flutter/material.dart';
 import 'package:Sync/const/styles.dart';
-import 'package:Sync/view/record.dart'; // Record 페이지를 위한 임포트 추가
+import 'package:Sync/view/audioRecoderView.dart'; // Record 페이지를 위한 임포트 추가
 
 class Music extends StatelessWidget {
   final String musicTitle;
   final String artistName;
   final String albumName;
   final String albumPicture;
+  final String lyrics;
 
   const Music({
     super.key,
@@ -15,6 +16,7 @@ class Music extends StatelessWidget {
     required this.artistName,
     required this.albumName,
     required this.albumPicture,
+    required this.lyrics,
     required VoidCallback onTap,
   }) : _onTap = onTap;
 
@@ -58,6 +60,7 @@ Music createMusicItem({
   required String artist,
   required String album,
   required String imagePath,
+  required String lyrics,
   required BuildContext context,
 }) {
   return Music(
@@ -65,6 +68,7 @@ Music createMusicItem({
     artistName: artist,
     albumName: album,
     albumPicture: imagePath,
+    lyrics: lyrics,
     onTap: () {
       Navigator.push(
         context,
@@ -74,28 +78,7 @@ Music createMusicItem({
               artistName: artist,
               albumName: album,
               albumPicture: imagePath,
-              lyrics: 'Baby (baby), got me looking so crazy\n'
-                  '백점받는 daydream (daydream)\n'
-                  'Got me feeling you 너도 말해줄래?\n'
-                  '누가 내게 귀엽다 봐줄때는 답할 넌\n'
-                  'Maybe you could be the one (one)\n'
-                  '난 만약만 한번 I\'m not looking for just fun\n'
-                  'Maybe I could be the one\n'
-                  'Oh, baby (baby)\n'
-                  '예민하다 내 lately (lately)\n'
-                  '넌 없이는 매일 매일이 yeah (매일이 yeah)\n'
-                  '채미 없어, 어쩌지?\n'
-                  'Baby (baby), got me looking so crazy\n'
-                  '백점받는 daydream (daydream)\n'
-                  'Got me feeling you 너도 말해줄래?\n'
-                  '누가 내게 귀엽다 봐줄때는 답할 넌\n'
-                  'Maybe you could be the one (one)\n'
-                  '난 만약만 한번 I\'m not looking for just fun\n'
-                  'Maybe I could be the one\n'
-                  'Oh, baby (baby)\n'
-                  '예민하다 내 lately (lately)\n'
-                  '넌 없이는 매일 매일이 yeah (매일이 yeah)\n'
-                  '채미 없어, 어쩌지?'),
+              lyrics: lyrics),
         ),
       );
     },

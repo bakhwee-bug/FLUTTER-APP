@@ -11,7 +11,7 @@ import '/const/colors.dart';
 void main() async {
   await Hive.initFlutter();
   Hive.registerAdapter(SongAdapter());
-  var box = await Hive.openBox<Song>('songsBox');
+  var box = await Hive.openBox<Song>('newBox');
   await box.clear(); // 기존 데이터 삭제
   var songs = Song.createDummySongList();
   for (var song in songs) {
@@ -90,6 +90,7 @@ class _MyHomePageState extends State<MyHomePage> {
       gender: widget.gender,
       age: widget.age,
       voiceRange: widget.voiceRange,
+      likedSongs: [],
       child: Scaffold(
         body: _navIndex().elementAt(_selectedIndex),
         bottomNavigationBar: Container(

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:Sync/const/styles.dart';
-import 'package:Sync/view/record.dart';
+import 'package:Sync/view/audioRecoderView.dart';
 
 class HotMusic extends StatelessWidget {
   final String musicTitle;
