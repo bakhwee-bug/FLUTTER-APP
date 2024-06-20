@@ -8,7 +8,9 @@ import 'package:Sync/models/profile_data.dart';
 import 'dart:io';
 
 class MyView extends StatefulWidget {
-  const MyView({super.key});
+  final RecordData? newRecord;
+
+  const MyView({super.key, this.newRecord});
 
   @override
   _MyViewState createState() => _MyViewState();
@@ -20,6 +22,9 @@ class _MyViewState extends State<MyView> {
   @override
   void initState() {
     super.initState();
+    if (widget.newRecord != null) {
+      songList.add(widget.newRecord!);
+    }
     _loadSongs();
   }
 
@@ -30,19 +35,21 @@ class _MyViewState extends State<MyView> {
 
     for (var file in files) {
       if (file.path.endsWith('.wav')) {
-        // 노래 파일로부터 정보를 추출하여 RecordData를 생성합니다.
-        // 예시 데이터로 사용합니다.
+        String fileName = file.uri.pathSegments.last;
+        DateTime creationDate = File(file.path).lastModifiedSync();
+
         loadedSongs.add(RecordData(
-          songTitle: 'Sample Song',
-          artistName: 'Sample Artist',
-          albumName: 'Sample Album',
+          songTitle: fileName,
+          artistName: 'Unknown Artist',
+          albumName: creationDate.toIso8601String(),
           albumPicture: 'assets/images/Album_image_borntobexx.jpg',
+          filePath: file.path,
         ));
       }
     }
 
     setState(() {
-      songList = loadedSongs;
+      songList.addAll(loadedSongs);
     });
   }
 

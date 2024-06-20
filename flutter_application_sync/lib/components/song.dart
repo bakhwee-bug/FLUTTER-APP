@@ -7,6 +7,7 @@ class RecordData extends StatelessWidget {
   final String artistName;
   final String albumName;
   final String albumPicture;
+  final String filePath;
 
   const RecordData({
     super.key,
@@ -14,6 +15,7 @@ class RecordData extends StatelessWidget {
     required this.artistName,
     required this.albumName,
     required this.albumPicture,
+    required this.filePath,
   });
   @override
   Widget build(BuildContext context) {

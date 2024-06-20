@@ -4,22 +4,13 @@ import 'package:flutter_sound/flutter_sound.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:Sync/const/colors.dart';
 import 'package:Sync/const/styles.dart';
+import 'package:hive/hive.dart';
+import 'package:Sync/models/song_model.dart';
 
 class Record extends StatefulWidget {
-  final String musicTitle;
-  final String artistName;
-  final String albumName;
-  final String albumPicture;
-  final String lyrics;
+  final int songId;
 
-  const Record({
-    super.key,
-    required this.musicTitle,
-    required this.artistName,
-    required this.albumName,
-    required this.albumPicture,
-    required this.lyrics,
-  });
+  const Record({super.key, required this.songId});
 
   @override
   _RecordState createState() => _RecordState();
@@ -29,12 +20,16 @@ class _RecordState extends State<Record> {
   FlutterSoundRecorder? _recorder;
   bool _isRecording = false;
   String _recordingPath = '';
+  late Box<Song> songBox;
+  late Song song;
 
   @override
   void initState() {
     super.initState();
     _recorder = FlutterSoundRecorder();
     _initializeRecorder();
+    songBox = Hive.box<Song>('newBox');
+    song = songBox.get(widget.songId - 1)!;
   }
 
   Future<void> _initializeRecorder() async {
@@ -76,7 +71,8 @@ class _RecordState extends State<Record> {
       // 녹음 완료 후 AudioPlayerPage로 이동
       Navigator.of(context).push(
         MaterialPageRoute(
-          builder: (context) => AudioPlayerPage(recordingPath: _recordingPath),
+          builder: (context) => AudioPlayerPage(
+              recordingPath: _recordingPath, songId: song.songId),
         ),
       );
     } catch (e) {
@@ -123,7 +119,7 @@ class _RecordState extends State<Record> {
                     ClipRRect(
                       borderRadius: BorderRadius.circular(8.0),
                       child: Image.asset(
-                        widget.albumPicture,
+                        song.albumPicture,
                         width: 104,
                         height: 104,
                         fit: BoxFit.cover,
@@ -135,11 +131,11 @@ class _RecordState extends State<Record> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            widget.musicTitle,
+                            song.songTitle,
                             style: AppTextStyles.textBold18,
                           ),
                           Text(
-                            widget.artistName,
+                            song.artistName,
                             style: AppTextStyles.textMedium18,
                           ),
                         ],
@@ -154,7 +150,7 @@ class _RecordState extends State<Record> {
                 width: MediaQuery.of(context).size.width,
                 decoration: BoxDecoration(
                   image: DecorationImage(
-                    image: AssetImage(widget.albumPicture),
+                    image: AssetImage(song.albumPicture),
                     fit: BoxFit.cover,
                     colorFilter: ColorFilter.mode(
                       Colors.white.withOpacity(0.9),
@@ -166,7 +162,7 @@ class _RecordState extends State<Record> {
                   child: Padding(
                     padding: const EdgeInsets.fromLTRB(20, 50, 20, 100),
                     child: Text(
-                      widget.lyrics,
+                      song.lyrics,
                       textAlign: TextAlign.center,
                       style: AppTextStyles.textBold18gray,
                     ),

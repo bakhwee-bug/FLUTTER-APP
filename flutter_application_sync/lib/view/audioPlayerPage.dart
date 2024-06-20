@@ -1,3 +1,4 @@
+import 'package:Sync/components/song.dart';
 import 'package:Sync/view/audioRecoderView.dart'; // Record 화면 경로에 맞게 수정
 import 'package:Sync/view/myView.dart';
 import 'package:flutter/material.dart';
@@ -6,11 +7,17 @@ import 'package:permission_handler/permission_handler.dart';
 import 'package:Sync/const/colors.dart';
 import 'package:Sync/const/styles.dart';
 import 'dart:io';
+import 'package:Sync/models/song_model.dart';
+import 'package:hive/hive.dart';
 
 class AudioPlayerPage extends StatefulWidget {
   final String recordingPath;
-
-  const AudioPlayerPage({super.key, required this.recordingPath});
+  final int songId;
+  const AudioPlayerPage({
+    super.key,
+    required this.recordingPath,
+    required this.songId,
+  });
 
   @override
   _AudioPlayerPageState createState() => _AudioPlayerPageState();
@@ -19,12 +26,16 @@ class AudioPlayerPage extends StatefulWidget {
 class _AudioPlayerPageState extends State<AudioPlayerPage> {
   FlutterSoundPlayer? _player;
   bool _isPlaying = false;
+  late Box<Song> songBox;
+  late Song song;
 
   @override
   void initState() {
     super.initState();
     _player = FlutterSoundPlayer();
     _initializePlayer();
+    songBox = Hive.box<Song>('newBox');
+    song = songBox.get(widget.songId - 1)!;
   }
 
   Future<void> _initializePlayer() async {
@@ -69,14 +80,23 @@ class _AudioPlayerPageState extends State<AudioPlayerPage> {
   Future<void> _saveRecording() async {
     try {
       // 노래 ID를 사용하여 파일 이름 생성
-      String newPath = '/sdcard/Download/song_id.wav';
+      String newPath = '/sdcard/Download/song_${widget.songId}.wav';
       File(widget.recordingPath).copySync(newPath);
       File(widget.recordingPath).deleteSync();
+
+      // RecordData 객체 생성
+      RecordData newRecord = RecordData(
+        songTitle: song.songTitle,
+        artistName: song.artistName,
+        albumName: DateTime.now().toIso8601String(),
+        albumPicture: song.albumPicture,
+        filePath: newPath,
+      );
 
       // MyView 화면으로 이동
       Navigator.of(context).pushReplacement(
         MaterialPageRoute(
-          builder: (context) => MyView(),
+          builder: (context) => MyView(newRecord: newRecord),
         ),
       );
     } catch (e) {
@@ -113,21 +133,73 @@ class _AudioPlayerPageState extends State<AudioPlayerPage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text('Recorded Audio'),
-            SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: _isPlaying ? _stopPlaying : _startPlaying,
-              child: Text(_isPlaying ? 'Stop Playing' : 'Play Recording'),
+            Container(
+              width: MediaQuery.of(context).size.width,
+              color: white,
+              child: Padding(
+                padding: const EdgeInsets.fromLTRB(20, 20, 20, 20),
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    ClipRRect(
+                      borderRadius: BorderRadius.circular(8.0),
+                      child: Image.asset(
+                        song.albumPicture,
+                        width: 104,
+                        height: 104,
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(20, 0, 0, 0),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            song.songTitle,
+                            style: AppTextStyles.textBold18,
+                          ),
+                          Text(
+                            song.artistName,
+                            style: AppTextStyles.textMedium18,
+                          ),
+                        ],
+                      ),
+                    ),
+                    Spacer(),
+                    ElevatedButton(
+                      onPressed: _isPlaying ? _stopPlaying : _startPlaying,
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.transparent, // 배경색 투명
+                        shadowColor: Colors.black, // 그림자 색상
+                        elevation: 5, // 그림자 높이
+                        padding: EdgeInsets.zero, // 패딩 제거
+                        minimumSize: Size(48, 48), // 버튼 최소 크기 설정
+                      ),
+                      child: Image.asset(
+                        _isPlaying
+                            ? 'assets/images/ic_record_stop.png'
+                            : 'assets/images/ic_play_start.png',
+                      ),
+                    ),
+                  ],
+                ),
+              ),
             ),
-            SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: _saveRecording,
-              child: Text('Save Recording'),
-            ),
-            SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: () => Navigator.of(context).pop(),
-              child: Text('Record Again'),
+            Expanded(
+              child: Column(
+                children: [
+                  ElevatedButton(
+                    onPressed: _saveRecording,
+                    child: Text('Save Recording'),
+                  ),
+                  SizedBox(height: 20),
+                  ElevatedButton(
+                    onPressed: () => Navigator.of(context).pop(),
+                    child: Text('Record Again'),
+                  ),
+                ],
+              ),
             ),
           ],
         ),

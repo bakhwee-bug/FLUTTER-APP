@@ -67,6 +67,7 @@ class HotMusic extends StatelessWidget {
 }
 
 HotMusic createHotMusicItem({
+  required int songId,
   required String title,
   required String artist,
   required String album,
@@ -85,11 +86,7 @@ HotMusic createHotMusicItem({
         context,
         MaterialPageRoute(
           builder: (context) => Record(
-            musicTitle: title,
-            artistName: artist,
-            albumName: album,
-            albumPicture: imagePath,
-            lyrics: lyrics,
+            songId: songId,
           ),
         ),
       );

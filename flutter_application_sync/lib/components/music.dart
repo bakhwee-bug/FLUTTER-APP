@@ -1,4 +1,3 @@
-// music.dart
 import 'package:flutter/material.dart';
 import 'package:Sync/const/styles.dart';
 import 'package:Sync/view/audioRecoderView.dart'; // Record 페이지를 위한 임포트 추가
@@ -9,6 +8,7 @@ class Music extends StatelessWidget {
   final String albumName;
   final String albumPicture;
   final String lyrics;
+  final VoidCallback _onTap;
 
   const Music({
     super.key,
@@ -20,7 +20,6 @@ class Music extends StatelessWidget {
     required VoidCallback onTap,
   }) : _onTap = onTap;
 
-  final VoidCallback _onTap;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -65,6 +64,7 @@ class Music extends StatelessWidget {
 }
 
 Music createMusicItem({
+  required int songId,
   required String title,
   required String artist,
   required String album,
@@ -83,11 +83,8 @@ Music createMusicItem({
         context,
         MaterialPageRoute(
           builder: (context) => Record(
-              musicTitle: title,
-              artistName: artist,
-              albumName: album,
-              albumPicture: imagePath,
-              lyrics: lyrics),
+            songId: songId,
+          ),
         ),
       );
     },

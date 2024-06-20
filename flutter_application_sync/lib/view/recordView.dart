@@ -123,6 +123,7 @@ class _RecordViewState extends State<RecordView> {
   List<Music> _buildMusicList(BuildContext context, List<Song> songs) {
     return songs
         .map((song) => createMusicItem(
+              songId: song.songId, // songId 전달
               title: song.songTitle,
               artist: song.artistName,
               album: song.albumName,

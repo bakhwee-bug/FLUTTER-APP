@@ -284,6 +284,7 @@ class _MainViewState extends State<MainView> {
                                   return Column(
                                     children: filteredSongs.map((song) {
                                       return createHotMusicItem(
+                                        songId: song.songId,
                                         title: song.songTitle,
                                         artist: song.artistName,
                                         album: song.albumName,
@@ -294,7 +295,7 @@ class _MainViewState extends State<MainView> {
                                     }).toList(),
                                   );
                                 },
-                              ),
+                              )
                             ],
                           ),
                         ),

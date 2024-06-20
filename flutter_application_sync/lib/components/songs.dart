@@ -15,7 +15,7 @@ class Songs extends StatelessWidget {
             crossAxisCount: 2,
             mainAxisSpacing: 25.0,
             crossAxisSpacing: 25.0,
-            childAspectRatio: 0.75,
+            childAspectRatio: 0.6,
           ),
           itemCount: songList.length,
           itemBuilder: (context, index) {
