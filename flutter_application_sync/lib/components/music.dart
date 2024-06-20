@@ -21,7 +21,6 @@ class Music extends StatelessWidget {
   }) : _onTap = onTap;
 
   final VoidCallback _onTap;
-
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -40,13 +39,23 @@ class Music extends StatelessWidget {
                 fit: BoxFit.cover,
               ),
             ),
-            Text(
-              musicTitle,
-              style: AppTextStyles.textBold13,
+            Container(
+              width: 104, // ClipRRect의 width와 동일하게 설정
+              child: Text(
+                musicTitle,
+                style: AppTextStyles.textBold13,
+                overflow: TextOverflow.ellipsis,
+                maxLines: 1,
+              ),
             ),
-            Text(
-              artistName,
-              style: AppTextStyles.textRegular13,
+            Container(
+              width: 104, // ClipRRect의 width와 동일하게 설정
+              child: Text(
+                artistName,
+                style: AppTextStyles.textRegular13,
+                overflow: TextOverflow.ellipsis,
+                maxLines: 1,
+              ),
             ),
           ],
         ),

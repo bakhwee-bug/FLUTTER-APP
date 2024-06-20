@@ -96,9 +96,14 @@ class _RecordState extends State<Record> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: white,
       appBar: AppBar(
         leading: IconButton(
-          icon: Image.asset('assets/images/ic_arrow_forward.png'),
+          icon: Image.asset(
+            'assets/images/ic_arrow_forward.png',
+            width: 24,
+            height: 24,
+          ),
           onPressed: () => Navigator.of(context).pop(),
         ),
         backgroundColor: white,

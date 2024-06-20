@@ -1,3 +1,4 @@
+import 'package:Sync/const/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_sound/flutter_sound.dart';
 
@@ -69,12 +70,18 @@ class _AudioPlayerPageState extends State<AudioPlayerPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: white,
       appBar: AppBar(
-        title: Text('Recorded Audio Player'),
         leading: IconButton(
-          icon: Icon(Icons.arrow_back),
+          icon: Image.asset(
+            'assets/images/ic_arrow_forward.png',
+            width: 24,
+            height: 24,
+          ),
           onPressed: () => Navigator.of(context).pop(),
         ),
+        backgroundColor: white,
+        elevation: 0,
       ),
       body: Center(
         child: Column(
