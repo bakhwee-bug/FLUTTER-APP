@@ -1,4 +1,5 @@
 import 'package:Sync/components/song.dart';
+import 'package:Sync/models/cover_model.dart';
 import 'package:Sync/view/audioRecoderView.dart'; // Record 화면 경로에 맞게 수정
 import 'package:Sync/view/myView.dart';
 import 'package:flutter/material.dart';
@@ -28,6 +29,7 @@ class _AudioPlayerPageState extends State<AudioPlayerPage> {
   bool _isPlaying = false;
   late Box<Song> songBox;
   late Song song;
+  var coverList = Hive.box<Cover>('coverBox');
 
   @override
   void initState() {
@@ -93,6 +95,18 @@ class _AudioPlayerPageState extends State<AudioPlayerPage> {
         filePath: newPath,
       );
 
+      setState(() {
+        coverList.put(
+          DateTime.now().toIso8601String(), // 키 값으로 사용
+          Cover(
+            coverId: DateTime.now().toIso8601String(),
+            songTitle: song.songTitle,
+            artistName: song.artistName,
+            imagePath: song.albumPicture,
+            coverPath: newPath,
+          ),
+        );
+      });
       // MyView 화면으로 이동
       Navigator.of(context).pushReplacement(
         MaterialPageRoute(
