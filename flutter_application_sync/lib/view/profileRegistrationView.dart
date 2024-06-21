@@ -2,7 +2,6 @@ import 'package:Sync/const/styles.dart';
 import 'package:Sync/view/voiceRangeSelectionView.dart';
 import 'package:flutter/material.dart';
 import '/const/colors.dart';
-import 'package:flutter_animate/flutter_animate.dart';
 
 class ProfileRegistrationView extends StatefulWidget {
   const ProfileRegistrationView({Key? key}) : super(key: key);
