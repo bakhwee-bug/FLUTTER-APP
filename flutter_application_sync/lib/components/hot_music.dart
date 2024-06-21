@@ -23,11 +23,12 @@ class HotMusic extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-        onTap: onTap,
-        child: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 10.0),
+      onTap: onTap,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 10.0),
+        child: Container(
+          width: double.infinity, // 전체 너비 사용
           child: Row(
-            mainAxisSize: MainAxisSize.max,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               ClipRRect(
@@ -39,30 +40,38 @@ class HotMusic extends StatelessWidget {
                   fit: BoxFit.cover,
                 ),
               ),
-              Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(12, 0, 0, 0),
+              SizedBox(width: 12),
+              Expanded(
                 child: Column(
-                  mainAxisSize: MainAxisSize.max,
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      musicTitle,
-                      style: AppTextStyles.textRegular16,
+                    Container(
+                      width: double.infinity, // 남은 전체 가로 길이를 차지하도록 설정
+                      child: Text(
+                        musicTitle,
+                        style: AppTextStyles.textRegular16,
+                        overflow: TextOverflow.ellipsis,
+                        maxLines: 1,
+                      ),
                     ),
-                    SizedBox(
-                      height: 5,
-                    ),
-                    Text(
-                      artistName,
-                      style: AppTextStyles.textRegular14,
+                    SizedBox(height: 5),
+                    Container(
+                      width: double.infinity, // 남은 전체 가로 길이를 차지하도록 설정
+                      child: Text(
+                        artistName,
+                        style: AppTextStyles.textRegular14,
+                        overflow: TextOverflow.ellipsis,
+                        maxLines: 1,
+                      ),
                     ),
                   ],
                 ),
               ),
             ],
           ),
-        ));
+        ),
+      ),
+    );
   }
 }
 
