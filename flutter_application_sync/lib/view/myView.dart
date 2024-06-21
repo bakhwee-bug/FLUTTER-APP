@@ -9,6 +9,7 @@ import '/const/colors.dart';
 import 'package:Sync/const/styles.dart';
 import 'package:Sync/models/profile_data.dart';
 import 'package:Sync/view/PlayView.dart';
+import 'dart:io';
 
 class MyView extends StatefulWidget {
   const MyView({super.key});
@@ -29,26 +30,41 @@ class _MyViewState extends State<MyView> {
   }
 
   void _loadSongs() {
-    coverDataList = coverHiveList.values.map((cover) {
-      return CoverData(
-        madeData: cover.madeData,
-        songTitle: cover.songTitle,
-        artistName: cover.artistName,
-        albumPicture: cover.imagePath,
-        filePath: cover.coverPath,
-        onTap: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => PlayView(
-                recordingPath: cover.coverPath,
-                songId: cover.songId,
-              ),
+    setState(() {
+      coverDataList = [];
+      List<Cover> coversToRemove = [];
+      coverHiveList.values.forEach((cover) {
+        if (File(cover.coverPath).existsSync()) {
+          coverDataList.add(
+            CoverData(
+              madeData: cover.madeData,
+              songTitle: cover.songTitle,
+              artistName: cover.artistName,
+              albumPicture: cover.imagePath,
+              filePath: cover.coverPath,
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => PlayView(
+                      recordingPath: cover.coverPath,
+                      songId: cover.songId,
+                    ),
+                  ),
+                );
+              },
             ),
           );
-        },
-      );
-    }).toList();
+        } else {
+          coversToRemove.add(cover);
+        }
+      });
+
+      // Remove covers with missing files from Hive box
+      for (var cover in coversToRemove) {
+        coverHiveList.delete(cover.coverId);
+      }
+    });
   }
 
   @override
