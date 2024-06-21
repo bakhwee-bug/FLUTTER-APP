@@ -9,6 +9,7 @@ class CoverData extends StatelessWidget {
   final String albumPicture;
   final String filePath;
   final VoidCallback onTap;
+  final VoidCallback? onLongPress; // nullable로 변경
 
   const CoverData({
     super.key,
@@ -18,12 +19,14 @@ class CoverData extends StatelessWidget {
     required this.albumPicture,
     required this.filePath,
     required this.onTap,
+    this.onLongPress, // 기본값을 null로 설정
   });
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: onTap,
+      onLongPress: onLongPress, // null이면 아무 동작도 하지 않음
       child: Container(
         decoration: BoxDecoration(
           color: white,

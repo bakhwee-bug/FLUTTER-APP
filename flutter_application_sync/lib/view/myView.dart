@@ -53,6 +53,9 @@ class _MyViewState extends State<MyView> {
                   ),
                 );
               },
+              onLongPress: () {
+                _showDeleteDialog(cover);
+              },
             ),
           );
         } else {
@@ -64,6 +67,39 @@ class _MyViewState extends State<MyView> {
       for (var cover in coversToRemove) {
         coverHiveList.delete(cover.coverId);
       }
+    });
+  }
+
+  void _showDeleteDialog(Cover cover) {
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: Text('삭제하시겠습니까?'),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.of(context).pop(),
+            child: Text('취소'),
+          ),
+          TextButton(
+            onPressed: () {
+              _deleteCover(cover);
+              Navigator.of(context).pop();
+            },
+            child: Text('삭제'),
+          ),
+        ],
+      ),
+    );
+  }
+
+  void _deleteCover(Cover cover) {
+    try {
+      File(cover.coverPath).deleteSync();
+    } catch (e) {
+      print('Error deleting file: $e');
+    }
+    setState(() {
+      coverDataList.removeWhere((c) => c.filePath == cover.coverPath);
     });
   }
 
