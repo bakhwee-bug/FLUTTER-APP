@@ -71,24 +71,55 @@ class _MyViewState extends State<MyView> {
   }
 
   void _showDeleteDialog(Cover cover) {
-    showDialog(
+    showGeneralDialog(
       context: context,
-      builder: (context) => AlertDialog(
-        title: Text('삭제하시겠습니까?'),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.of(context).pop(),
-            child: Text('취소'),
+      barrierDismissible: true,
+      barrierLabel: MaterialLocalizations.of(context).modalBarrierDismissLabel,
+      barrierColor: Colors.black54,
+      transitionDuration: const Duration(milliseconds: 200),
+      pageBuilder: (BuildContext buildContext, Animation animation,
+          Animation secondaryAnimation) {
+        return Center(
+          child: AlertDialog(
+            backgroundColor: white,
+            title: Text(
+              '이 커버곡을 삭제하시겠습니까?',
+              style: AppTextStyles.textBold18,
+              textAlign: TextAlign.center,
+            ),
+            actionsAlignment: MainAxisAlignment.center, // actions 중앙 정렬
+            actions: [
+              TextButton(
+                onPressed: () => Navigator.of(context).pop(),
+                child: Text(
+                  '취소',
+                  style: AppTextStyles.textBold18.copyWith(color: gray_50),
+                ),
+              ),
+              TextButton(
+                onPressed: () {
+                  _deleteCover(cover);
+                  Navigator.of(context).pop();
+                },
+                child: Text(
+                  '삭제',
+                  style: AppTextStyles.textBold18.copyWith(color: sub3),
+                ),
+              ),
+            ],
           ),
-          TextButton(
-            onPressed: () {
-              _deleteCover(cover);
-              Navigator.of(context).pop();
-            },
-            child: Text('삭제'),
+        );
+      },
+      transitionBuilder: (BuildContext context, Animation<double> animation,
+          Animation<double> secondaryAnimation, Widget child) {
+        return FadeTransition(
+          opacity: animation,
+          child: ScaleTransition(
+            scale: animation,
+            child: child,
           ),
-        ],
-      ),
+        );
+      },
     );
   }
 
