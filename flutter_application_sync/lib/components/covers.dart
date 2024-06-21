@@ -15,7 +15,7 @@ class Covers extends StatelessWidget {
             crossAxisCount: 2,
             mainAxisSpacing: 25.0,
             crossAxisSpacing: 25.0,
-            childAspectRatio: 0.68,
+            childAspectRatio: 0.77,
           ),
           itemCount: coverDataList.length,
           itemBuilder: (context, index) {

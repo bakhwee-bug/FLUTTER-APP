@@ -213,15 +213,104 @@ class _AudioPlayerPageState extends State<AudioPlayerPage> {
             ),
             Expanded(
               child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  ElevatedButton(
-                    onPressed: _saveRecording,
-                    child: Text('Save Recording'),
+                  GestureDetector(
+                    onTap: () => Navigator.of(context).pop(),
+                    child: Padding(
+                      padding: EdgeInsetsDirectional.fromSTEB(40, 10, 40, 10),
+                      child: Material(
+                        color: Colors.transparent,
+                        child: Container(
+                          width: double.infinity,
+                          height: 65,
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(21),
+                            boxShadow: [
+                              BoxShadow(
+                                blurRadius: 7.1,
+                                color: Color(0x33000000),
+                                offset: Offset(
+                                  0,
+                                  0,
+                                ),
+                              )
+                            ],
+                          ),
+                          child: Padding(
+                            padding:
+                                EdgeInsetsDirectional.fromSTEB(20, 0, 20, 0),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.max,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                Image.asset(
+                                  'assets/images/ic_mic.png',
+                                  width: 23,
+                                  height: 23,
+                                  fit: BoxFit.fill,
+                                ),
+                                SizedBox(
+                                  width: 20,
+                                ),
+                                Text(
+                                  '다시 부르기',
+                                  textAlign: TextAlign.start,
+                                  style: AppTextStyles.textBold18,
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
                   ),
-                  SizedBox(height: 20),
-                  ElevatedButton(
-                    onPressed: () => Navigator.of(context).pop(),
-                    child: Text('Record Again'),
+                  GestureDetector(
+                    onTap: _saveRecording,
+                    child: Padding(
+                      padding: EdgeInsetsDirectional.fromSTEB(40, 10, 40, 10),
+                      child: Material(
+                        color: Colors.transparent,
+                        child: Container(
+                          width: double.infinity,
+                          height: 65,
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(21),
+                            boxShadow: [
+                              BoxShadow(
+                                blurRadius: 7.1,
+                                color: biscay_30,
+                                offset: Offset(
+                                  0,
+                                  0,
+                                ),
+                              )
+                            ],
+                          ),
+                          child: Padding(
+                            padding:
+                                EdgeInsetsDirectional.fromSTEB(20, 0, 20, 0),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.max,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                Text(
+                                  '저장하기',
+                                  textAlign: TextAlign.start,
+                                  style: AppTextStyles.textBold18
+                                      .copyWith(color: biscay_50),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
                   ),
                 ],
               ),
