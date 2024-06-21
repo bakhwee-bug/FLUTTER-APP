@@ -118,12 +118,20 @@ class _RecordState extends State<Record> with SingleTickerProviderStateMixin {
               .where((likedSong) => likedSong.songId == song.songId)
               .forEach((likedSong) => likedSong.delete());
           _showSnackbar("좋아요 목록에서 삭제되었습니다");
-          _favoriteController.reverse();
+          _favoriteController.reverse().then((_) {
+            if (mounted) {
+              setState(() {});
+            }
+          });
         } else {
           // Add to liked songs
           likedSongsBox.add(LikedSong(songId: song.songId));
           _showSnackbar("좋아요 추가되었습니다");
-          _favoriteController.animateTo(0.6);
+          _favoriteController.animateTo(0.6).then((_) {
+            if (mounted) {
+              setState(() {});
+            }
+          });
         }
         isLiked = !isLiked;
       });
