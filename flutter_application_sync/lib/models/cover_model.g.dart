@@ -22,13 +22,15 @@ class CoverAdapter extends TypeAdapter<Cover> {
       artistName: fields[2] as String,
       imagePath: fields[3] as String,
       coverPath: fields[4] as String,
+      madeData: fields[5] as String,
+      songId: fields[6] as int,
     );
   }
 
   @override
   void write(BinaryWriter writer, Cover obj) {
     writer
-      ..writeByte(5)
+      ..writeByte(7)
       ..writeByte(0)
       ..write(obj.coverId)
       ..writeByte(1)
@@ -38,7 +40,11 @@ class CoverAdapter extends TypeAdapter<Cover> {
       ..writeByte(3)
       ..write(obj.imagePath)
       ..writeByte(4)
-      ..write(obj.coverPath);
+      ..write(obj.coverPath)
+      ..writeByte(5)
+      ..write(obj.madeData)
+      ..writeByte(6)
+      ..write(obj.songId);
   }
 
   @override

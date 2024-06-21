@@ -14,10 +14,11 @@ void main() async {
   Hive.registerAdapter(SongAdapter());
   Hive.registerAdapter(CoverAdapter());
   var box = await Hive.openBox<Song>('newBox');
-  var box2 = await Hive.openBox<Cover>('coverBox');
+
+  await Hive.openBox<Cover>('coverBox2');
 
   await box.clear(); // 기존 데이터 삭제
-  await box2.clear(); // 기존 데이터 삭제
+
   var songs = Song.createDummySongList();
   for (var song in songs) {
     await box.add(song);

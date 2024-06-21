@@ -22,14 +22,14 @@ class _MyViewState extends State<MyView> {
   @override
   void initState() {
     super.initState();
-    coverHiveList = Hive.box<Cover>('coverBox');
+    coverHiveList = Hive.box<Cover>('coverBox2');
     _loadSongs();
   }
 
   void _loadSongs() {
     coverDataList = coverHiveList.values.map((cover) {
       return CoverData(
-        coverId: cover.coverId,
+        madeData: cover.madeData,
         songTitle: cover.songTitle,
         artistName: cover.artistName,
         albumPicture: cover.imagePath,

@@ -3,7 +3,7 @@ import 'package:Sync/const/colors.dart';
 import 'package:Sync/const/styles.dart';
 
 class CoverData extends StatelessWidget {
-  final String coverId;
+  final String madeData;
   final String songTitle;
   final String artistName;
   final String albumPicture;
@@ -11,7 +11,7 @@ class CoverData extends StatelessWidget {
 
   const CoverData({
     super.key,
-    required this.coverId,
+    required this.madeData,
     required this.songTitle,
     required this.artistName,
     required this.albumPicture,
@@ -73,7 +73,7 @@ class CoverData extends StatelessWidget {
                   width: 130, // ClipRRect의 width와 동일하게 설정
                   child: Text(
                     textAlign: TextAlign.center,
-                    coverId,
+                    madeData,
                     style: AppTextStyles.textMedium12,
                     overflow: TextOverflow.ellipsis,
                     maxLines: 2,
