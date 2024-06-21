@@ -2,6 +2,7 @@ import 'package:Sync/models/cover_model.dart';
 import 'package:Sync/models/liked_song_model.dart';
 import 'package:Sync/models/song_model.dart';
 import 'package:Sync/view/ProfileRegistrationView.dart';
+import 'package:Sync/view/introducePage.dart';
 import 'package:flutter/material.dart';
 import 'package:Sync/view/mainView.dart';
 import 'package:Sync/view/myView.dart';
@@ -39,7 +40,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Sync',
       debugShowCheckedModeBanner: false,
-      home: const ProfileRegistrationView(), // 시작 화면 변경
+      home: const Introducepage(), // 시작 화면
       theme: ThemeData(
         pageTransitionsTheme: const PageTransitionsTheme(
           builders: <TargetPlatform, PageTransitionsBuilder>{

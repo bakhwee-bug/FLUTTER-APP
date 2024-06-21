@@ -9,7 +9,6 @@ import 'package:hive/hive.dart';
 import 'package:Sync/models/song_model.dart';
 import 'package:lottie/lottie.dart';
 import 'package:flutter_animated_icons/icons8.dart';
-import 'package:flutter_animated_icons/flutter_animated_icons.dart';
 
 class Record extends StatefulWidget {
   final int songId;
