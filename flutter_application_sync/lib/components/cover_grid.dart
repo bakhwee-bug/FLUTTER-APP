@@ -1,16 +1,15 @@
+import 'package:Sync/components/cover.dart';
+import 'package:Sync/components/covers.dart';
 import 'package:flutter/material.dart';
-import 'package:Sync/components/song.dart';
-import 'package:Sync/const/styles.dart';
-import 'package:Sync/components/songs.dart';
 
 import '/const/colors.dart';
 
-class SongBox extends StatelessWidget {
-  final List<RecordData> songList;
+class CoverGrid extends StatelessWidget {
+  final List<CoverData> coverDataList;
 
-  const SongBox({
+  const CoverGrid({
     super.key,
-    required this.songList,
+    required this.coverDataList,
   });
   @override
   Widget build(BuildContext context) {
@@ -20,7 +19,7 @@ class SongBox extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Songs(songList: songList),
+          Covers(coverDataList: coverDataList),
         ],
       ),
     );

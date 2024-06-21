@@ -1,15 +1,14 @@
-import 'package:Sync/components/song.dart';
 import 'package:Sync/models/cover_model.dart';
-import 'package:Sync/view/audioRecoderView.dart'; // Record 화면 경로에 맞게 수정
 import 'package:Sync/view/myView.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_sound/flutter_sound.dart';
-import 'package:permission_handler/permission_handler.dart';
 import 'package:Sync/const/colors.dart';
 import 'package:Sync/const/styles.dart';
 import 'dart:io';
 import 'package:Sync/models/song_model.dart';
 import 'package:hive/hive.dart';
+import 'package:path_provider/path_provider.dart'; // 경로를 가져오기 위한 패키지
+import 'package:intl/intl.dart'; // 날짜 포맷팅을 위한 패키지
 
 class AudioPlayerPage extends StatefulWidget {
   final String recordingPath;
@@ -79,27 +78,27 @@ class _AudioPlayerPageState extends State<AudioPlayerPage> {
     }
   }
 
+  String _sanitizeFileName(String fileName) {
+    // 파일 이름으로 사용할 수 없는 문자들을 제거합니다.
+    return fileName.replaceAll(RegExp(r'[<>:"/\\|?*]'), '');
+  }
+
   Future<void> _saveRecording() async {
     try {
-      // 노래 ID를 사용하여 파일 이름 생성
-      String newPath = '/sdcard/Download/song_${widget.songId}.wav';
+      // 현재 날짜와 시간을 가져오고, 이를 원하는 형식으로 포맷팅합니다.
+      String createdAt = DateFormat('yyyy-MM-dd').format(DateTime.now());
+      String sanitizedTitle = _sanitizeFileName(createdAt);
+      String newPath = '/sdcard/Download/$sanitizedTitle.wav';
+
+      // 파일을 복사합니다.
       File(widget.recordingPath).copySync(newPath);
       File(widget.recordingPath).deleteSync();
 
-      // RecordData 객체 생성
-      RecordData newRecord = RecordData(
-        songTitle: song.songTitle,
-        artistName: song.artistName,
-        albumName: DateTime.now().toIso8601String(),
-        albumPicture: song.albumPicture,
-        filePath: newPath,
-      );
-
       setState(() {
         coverList.put(
-          DateTime.now().toIso8601String(), // 키 값으로 사용
+          DateTime.now().toIso8601String(),
           Cover(
-            coverId: DateTime.now().toIso8601String(),
+            coverId: DateFormat('yyyy-MM-dd').format(DateTime.now()),
             songTitle: song.songTitle,
             artistName: song.artistName,
             imagePath: song.albumPicture,
@@ -107,10 +106,11 @@ class _AudioPlayerPageState extends State<AudioPlayerPage> {
           ),
         );
       });
-      // MyView 화면으로 이동
+
+      // MyView 화면 이동
       Navigator.of(context).pushReplacement(
         MaterialPageRoute(
-          builder: (context) => MyView(newRecord: newRecord),
+          builder: (context) => MyView(),
         ),
       );
     } catch (e) {

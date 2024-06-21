@@ -1,56 +1,41 @@
+import 'package:Sync/components/cover.dart';
+import 'package:Sync/components/cover_grid.dart';
+import 'package:Sync/models/cover_model.dart';
 import 'package:flutter/material.dart';
-import 'package:Sync/components/song.dart';
-import 'package:Sync/components/song_box.dart';
 import 'package:Sync/components/sync_bar.dart';
+import 'package:hive/hive.dart';
 import '/const/colors.dart';
 import 'package:Sync/const/styles.dart';
 import 'package:Sync/models/profile_data.dart';
-import 'dart:io';
 
 class MyView extends StatefulWidget {
-  final RecordData? newRecord;
-
-  const MyView({super.key, this.newRecord});
+  const MyView({super.key});
 
   @override
   _MyViewState createState() => _MyViewState();
 }
 
 class _MyViewState extends State<MyView> {
-  List<RecordData> songList = [];
+  late Box<Cover> coverHiveList;
+  late List<CoverData> coverDataList;
 
   @override
   void initState() {
     super.initState();
-    if (widget.newRecord != null) {
-      songList.add(widget.newRecord!);
-    }
+    coverHiveList = Hive.box<Cover>('coverBox');
     _loadSongs();
   }
 
   void _loadSongs() {
-    Directory dir = Directory('/sdcard/Download');
-    List<FileSystemEntity> files = dir.listSync();
-    List<RecordData> loadedSongs = [];
-
-    for (var file in files) {
-      if (file.path.endsWith('.wav')) {
-        String fileName = file.uri.pathSegments.last;
-        DateTime creationDate = File(file.path).lastModifiedSync();
-
-        loadedSongs.add(RecordData(
-          songTitle: fileName,
-          artistName: 'Unknown Artist',
-          albumName: creationDate.toIso8601String(),
-          albumPicture: 'assets/images/Album_image_borntobexx.jpg',
-          filePath: file.path,
-        ));
-      }
-    }
-
-    setState(() {
-      songList.addAll(loadedSongs);
-    });
+    coverDataList = coverHiveList.values.map((cover) {
+      return CoverData(
+        coverId: cover.coverId,
+        songTitle: cover.songTitle,
+        artistName: cover.artistName,
+        albumPicture: cover.imagePath,
+        filePath: cover.coverPath,
+      );
+    }).toList();
   }
 
   @override
@@ -63,9 +48,9 @@ class _MyViewState extends State<MyView> {
         top: true,
         child: Column(
           children: [
-            //Appbar
+            // Appbar
             Syncbar(barImage: 'assets/images/sync_logo.png'),
-            //songs
+            // Songs
             Expanded(
               child: SingleChildScrollView(
                 padding: const EdgeInsets.fromLTRB(23, 8, 23, 20),
@@ -86,7 +71,7 @@ class _MyViewState extends State<MyView> {
                         ],
                       ),
                     ),
-                    SongBox(songList: songList)
+                    CoverGrid(coverDataList: coverDataList)
                   ],
                 ),
               ),

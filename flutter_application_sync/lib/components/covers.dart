@@ -1,10 +1,10 @@
+import 'package:Sync/components/cover.dart';
 import 'package:flutter/material.dart';
-import 'package:Sync/components/song.dart'; // Music 모델을 포함하는 경로가 정확해야 합니다.
 
-class Songs extends StatelessWidget {
-  final List<RecordData> songList;
+class Covers extends StatelessWidget {
+  final List<CoverData> coverDataList;
 
-  const Songs({super.key, required this.songList});
+  const Covers({super.key, required this.coverDataList});
 
   @override
   Widget build(BuildContext context) {
@@ -17,9 +17,9 @@ class Songs extends StatelessWidget {
             crossAxisSpacing: 25.0,
             childAspectRatio: 0.6,
           ),
-          itemCount: songList.length,
+          itemCount: coverDataList.length,
           itemBuilder: (context, index) {
-            return songList[index];
+            return coverDataList[index];
           },
           shrinkWrap: true,
           physics: NeverScrollableScrollPhysics(), // 이 그리드뷰 자체의 스크롤을 막기 위해

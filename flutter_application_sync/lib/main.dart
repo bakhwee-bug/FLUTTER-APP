@@ -21,6 +21,7 @@ void main() async {
   for (var song in songs) {
     await box.add(song);
   }
+
   runApp(MyApp());
 }
 
