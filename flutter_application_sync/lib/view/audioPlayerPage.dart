@@ -7,7 +7,8 @@ import 'package:Sync/const/styles.dart';
 import 'dart:io';
 import 'package:Sync/models/song_model.dart';
 import 'package:hive/hive.dart';
-import 'package:intl/intl.dart'; // 날짜 포맷팅을 위한 패키지
+import 'package:intl/intl.dart';
+import 'package:path_provider/path_provider.dart'; // 추가
 
 class AudioPlayerPage extends StatefulWidget {
   final String recordingPath;
@@ -84,10 +85,14 @@ class _AudioPlayerPageState extends State<AudioPlayerPage> {
 
   Future<void> _saveRecording() async {
     try {
-      // 현재 날짜와 시간을 가져오고, 이를 원하는 형식으로 포맷
+      // 앱의 전용 디렉토리 경로를 가져옵니다.
+      Directory appDocDir = await getApplicationDocumentsDirectory();
+      String appDocPath = appDocDir.path;
+
+      // 현재 날짜와 시간을 가져오고, 이를 원하는 형식으로 포맷합니다.
       String createdAt = song.songTitle + DateTime.now().toIso8601String();
       String sanitizedTitle = _sanitizeFileName(createdAt);
-      String newPath = '/sdcard/Download/$sanitizedTitle.wav';
+      String newPath = '$appDocPath/$sanitizedTitle.wav';
 
       // 파일을 복사합니다.
       File(widget.recordingPath).copySync(newPath);
