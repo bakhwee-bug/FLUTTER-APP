@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:Sync/components/music.dart';
-import 'package:Sync/const/styles.dart';
 import 'package:Sync/components/musics.dart';
 
 import '/const/colors.dart';

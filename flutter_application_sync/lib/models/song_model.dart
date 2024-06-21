@@ -812,7 +812,7 @@ class Song extends HiveObject {
           songTitle: "보여줄게",
           artistName: "에일리(Ailee)",
           albumName: "Invitation",
-          albumPicture: "Album_image_Invitation.jpg",
+          albumPicture: "assets/images/Album_image_ailee.jpg",
           lyrics: '내가 사준 옷을 걸치고\n'
               '내가 사준 향술 뿌리고\n'
               '지금쯤 넌 그녈 만나\n'
