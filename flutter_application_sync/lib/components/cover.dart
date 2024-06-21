@@ -49,17 +49,35 @@ class CoverData extends StatelessWidget {
                         fit: BoxFit.cover,
                       ),
                     )),
-                Text(
-                  songTitle,
-                  style: AppTextStyles.textBold16,
+                Container(
+                  width: 130, // ClipRRect의 width와 동일하게 설정
+                  child: Text(
+                    textAlign: TextAlign.center,
+                    songTitle,
+                    style: AppTextStyles.textBold16,
+                    overflow: TextOverflow.ellipsis,
+                    maxLines: 2,
+                  ),
                 ),
-                Text(
-                  artistName,
-                  style: AppTextStyles.textMedium12,
+                Container(
+                  width: 130, // ClipRRect의 width와 동일하게 설정
+                  child: Text(
+                    textAlign: TextAlign.center,
+                    artistName,
+                    style: AppTextStyles.textMedium12,
+                    overflow: TextOverflow.ellipsis,
+                    maxLines: 1,
+                  ),
                 ),
-                Text(
-                  coverId,
-                  style: AppTextStyles.textMedium12,
+                Container(
+                  width: 130, // ClipRRect의 width와 동일하게 설정
+                  child: Text(
+                    textAlign: TextAlign.center,
+                    coverId,
+                    style: AppTextStyles.textMedium12,
+                    overflow: TextOverflow.ellipsis,
+                    maxLines: 1,
+                  ),
                 ),
               ],
             )));

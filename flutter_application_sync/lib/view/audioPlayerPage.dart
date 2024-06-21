@@ -7,7 +7,6 @@ import 'package:Sync/const/styles.dart';
 import 'dart:io';
 import 'package:Sync/models/song_model.dart';
 import 'package:hive/hive.dart';
-import 'package:path_provider/path_provider.dart'; // 경로를 가져오기 위한 패키지
 import 'package:intl/intl.dart'; // 날짜 포맷팅을 위한 패키지
 
 class AudioPlayerPage extends StatefulWidget {
@@ -98,7 +97,7 @@ class _AudioPlayerPageState extends State<AudioPlayerPage> {
         coverList.put(
           DateTime.now().toIso8601String(),
           Cover(
-            coverId: DateFormat('yyyy-MM-dd').format(DateTime.now()),
+            coverId: DateTime.now().toIso8601String(),
             songTitle: song.songTitle,
             artistName: song.artistName,
             imagePath: song.albumPicture,
