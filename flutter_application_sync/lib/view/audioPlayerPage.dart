@@ -78,13 +78,13 @@ class _AudioPlayerPageState extends State<AudioPlayerPage> {
   }
 
   String _sanitizeFileName(String fileName) {
-    // 파일 이름으로 사용할 수 없는 문자들을 제거합니다.
+    // 파일 이름으로 사용할 수 없는 문자들을 제거
     return fileName.replaceAll(RegExp(r'[<>:"/\\|?*]'), '');
   }
 
   Future<void> _saveRecording() async {
     try {
-      // 현재 날짜와 시간을 가져오고, 이를 원하는 형식으로 포맷팅합니다.
+      // 현재 날짜와 시간을 가져오고, 이를 원하는 형식으로 포맷
       String createdAt = song.songTitle + DateTime.now().toIso8601String();
       String sanitizedTitle = _sanitizeFileName(createdAt);
       String newPath = '/sdcard/Download/$sanitizedTitle.wav';

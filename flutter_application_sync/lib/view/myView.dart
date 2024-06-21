@@ -4,9 +4,11 @@ import 'package:Sync/models/cover_model.dart';
 import 'package:flutter/material.dart';
 import 'package:Sync/components/sync_bar.dart';
 import 'package:hive/hive.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import '/const/colors.dart';
 import 'package:Sync/const/styles.dart';
 import 'package:Sync/models/profile_data.dart';
+import 'package:Sync/view/PlayView.dart';
 
 class MyView extends StatefulWidget {
   const MyView({super.key});
@@ -34,6 +36,17 @@ class _MyViewState extends State<MyView> {
         artistName: cover.artistName,
         albumPicture: cover.imagePath,
         filePath: cover.coverPath,
+        onTap: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => PlayView(
+                recordingPath: cover.coverPath,
+                songId: cover.songId,
+              ),
+            ),
+          );
+        },
       );
     }).toList();
   }
