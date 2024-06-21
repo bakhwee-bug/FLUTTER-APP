@@ -299,6 +299,59 @@ class _MainViewState extends State<MainView> {
                             ],
                           ),
                         ),
+                        Container(
+                          padding: const EdgeInsets.fromLTRB(23, 0, 23, 20),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text.rich(
+                                TextSpan(
+                                  children: [
+                                    TextSpan(
+                                        text: '싱크의 ',
+                                        style: AppTextStyles.textBold20),
+                                    TextSpan(
+                                        text: '모든 노래',
+                                        style: AppTextStyles.textBold20
+                                            .copyWith(color: biscay_50)),
+                                    TextSpan(
+                                        text: ' 보여드려요💿',
+                                        style: AppTextStyles.textBold20),
+                                  ],
+                                ),
+                              ),
+                              ValueListenableBuilder(
+                                valueListenable: hotList.listenable(),
+                                builder: (context, Box<Song> box, _) {
+                                  if (box.values.isEmpty) {
+                                    return Center(
+                                      child: Text('No songs available',
+                                          style: AppTextStyles.textBold22),
+                                    );
+                                  }
+
+                                  // 모든 노래 가져오기
+                                  final List<Song> allSongs =
+                                      box.values.toList();
+
+                                  return Column(
+                                    children: allSongs.map((song) {
+                                      return createHotMusicItem(
+                                        songId: song.songId,
+                                        title: song.songTitle,
+                                        artist: song.artistName,
+                                        album: song.albumName,
+                                        imagePath: song.albumPicture,
+                                        lyrics: song.lyrics,
+                                        context: context,
+                                      );
+                                    }).toList(),
+                                  );
+                                },
+                              )
+                            ],
+                          ),
+                        ),
                       ],
                     ),
                   ],
