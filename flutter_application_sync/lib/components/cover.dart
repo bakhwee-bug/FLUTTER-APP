@@ -56,7 +56,7 @@ class CoverData extends StatelessWidget {
                     songTitle,
                     style: AppTextStyles.textBold16,
                     overflow: TextOverflow.ellipsis,
-                    maxLines: 2,
+                    maxLines: 1,
                   ),
                 ),
                 Container(
@@ -76,7 +76,7 @@ class CoverData extends StatelessWidget {
                     coverId,
                     style: AppTextStyles.textMedium12,
                     overflow: TextOverflow.ellipsis,
-                    maxLines: 1,
+                    maxLines: 2,
                   ),
                 ),
               ],

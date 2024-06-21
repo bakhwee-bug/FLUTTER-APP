@@ -85,7 +85,8 @@ class _AudioPlayerPageState extends State<AudioPlayerPage> {
   Future<void> _saveRecording() async {
     try {
       // 현재 날짜와 시간을 가져오고, 이를 원하는 형식으로 포맷팅합니다.
-      String createdAt = DateFormat('yyyy-MM-dd').format(DateTime.now());
+      String createdAt =
+          song.songTitle + DateFormat('yyyy-MM-dd').format(DateTime.now());
       String sanitizedTitle = _sanitizeFileName(createdAt);
       String newPath = '/sdcard/Download/$sanitizedTitle.wav';
 
@@ -168,13 +169,23 @@ class _AudioPlayerPageState extends State<AudioPlayerPage> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(
-                            song.songTitle,
-                            style: AppTextStyles.textBold18,
+                          Container(
+                            width: 140, // 남은 전체 가로 길이를 차지하도록 설정
+                            child: Text(
+                              song.songTitle,
+                              style: AppTextStyles.textBold18,
+                              overflow: TextOverflow.ellipsis,
+                              maxLines: 1,
+                            ),
                           ),
-                          Text(
-                            song.artistName,
-                            style: AppTextStyles.textMedium18,
+                          Container(
+                            width: 140, // 남은 전체 가로 길이를 차지하도록 설정
+                            child: Text(
+                              song.artistName,
+                              style: AppTextStyles.textMedium18,
+                              overflow: TextOverflow.fade,
+                              maxLines: 1,
+                            ),
                           ),
                         ],
                       ),
