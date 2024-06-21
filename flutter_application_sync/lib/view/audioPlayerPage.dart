@@ -171,7 +171,7 @@ class _AudioPlayerPageState extends State<AudioPlayerPage> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Container(
-                            width: 140, // 남은 전체 가로 길이를 차지하도록 설정
+                            width: 140,
                             child: Text(
                               song.songTitle,
                               style: AppTextStyles.textBold18,
@@ -180,7 +180,7 @@ class _AudioPlayerPageState extends State<AudioPlayerPage> {
                             ),
                           ),
                           Container(
-                            width: 140, // 남은 전체 가로 길이를 차지하도록 설정
+                            width: 140,
                             child: Text(
                               song.artistName,
                               style: AppTextStyles.textMedium18,

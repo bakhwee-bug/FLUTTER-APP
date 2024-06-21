@@ -1,4 +1,5 @@
 import 'package:Sync/models/cover_model.dart';
+import 'package:Sync/models/liked_song_model.dart';
 import 'package:Sync/models/song_model.dart';
 import 'package:Sync/view/ProfileRegistrationView.dart';
 import 'package:flutter/material.dart';
@@ -13,9 +14,10 @@ void main() async {
   await Hive.initFlutter();
   Hive.registerAdapter(SongAdapter());
   Hive.registerAdapter(CoverAdapter());
+  Hive.registerAdapter(LikedSongAdapter());
   var box = await Hive.openBox<Song>('newBox');
-
   await Hive.openBox<Cover>('coverBox2');
+  await Hive.openBox<LikedSong>('likedSongsBox');
 
   await box.clear(); // 기존 데이터 삭제
 

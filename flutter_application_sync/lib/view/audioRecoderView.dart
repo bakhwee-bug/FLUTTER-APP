@@ -1,3 +1,4 @@
+import 'package:Sync/models/liked_song_model.dart';
 import 'package:Sync/view/audioPlayerPage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_sound/flutter_sound.dart';
@@ -6,6 +7,9 @@ import 'package:Sync/const/colors.dart';
 import 'package:Sync/const/styles.dart';
 import 'package:hive/hive.dart';
 import 'package:Sync/models/song_model.dart';
+import 'package:lottie/lottie.dart';
+import 'package:flutter_animated_icons/icons8.dart';
+import 'package:flutter_animated_icons/flutter_animated_icons.dart';
 
 class Record extends StatefulWidget {
   final int songId;
@@ -16,12 +20,15 @@ class Record extends StatefulWidget {
   _RecordState createState() => _RecordState();
 }
 
-class _RecordState extends State<Record> {
+class _RecordState extends State<Record> with SingleTickerProviderStateMixin {
   FlutterSoundRecorder? _recorder;
   bool _isRecording = false;
   String _recordingPath = '';
   late Box<Song> songBox;
   late Song song;
+  late Box<LikedSong> likedSongsBox;
+  late bool isLiked;
+  late AnimationController _favoriteController;
 
   @override
   void initState() {
@@ -29,7 +36,15 @@ class _RecordState extends State<Record> {
     _recorder = FlutterSoundRecorder();
     _initializeRecorder();
     songBox = Hive.box<Song>('newBox');
+    likedSongsBox = Hive.box<LikedSong>('likedSongsBox');
     song = songBox.get(widget.songId - 1)!;
+    isLiked = likedSongsBox.values
+        .any((likedSong) => likedSong.songId == song.songId);
+    _favoriteController = AnimationController(
+      vsync: this,
+      duration: const Duration(seconds: 1),
+      value: isLiked ? 0.6 : 0.0,
+    );
   }
 
   Future<void> _initializeRecorder() async {
@@ -38,10 +53,8 @@ class _RecordState extends State<Record> {
         await Permission.storage.request().isGranted) {
       // Permissions granted
     } else {
-      // Permissions not granted, handle it
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Permissions not granted')),
-      );
+      // Permissions not granted
+      _showSnackbar("Permissions not granted");
     }
   }
 
@@ -51,23 +64,29 @@ class _RecordState extends State<Record> {
       await _recorder!.startRecorder(
         toFile: _recordingPath,
       );
-      setState(() {
-        _isRecording = true;
-      });
+      if (mounted) {
+        setState(() {
+          _isRecording = true;
+        });
+      }
     } catch (e) {
       print('Error starting recorder: $e');
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Error starting recorder: $e')),
-      );
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Error starting recorder: $e')),
+        );
+      }
     }
   }
 
   Future<void> _stopRecording() async {
     try {
       await _recorder!.stopRecorder();
-      setState(() {
-        _isRecording = false;
-      });
+      if (mounted) {
+        setState(() {
+          _isRecording = false;
+        });
+      }
       // 녹음 완료 후 AudioPlayerPage로 이동
       Navigator.of(context).push(
         MaterialPageRoute(
@@ -77,15 +96,45 @@ class _RecordState extends State<Record> {
       );
     } catch (e) {
       print('Error stopping recorder: $e');
+      if (mounted) {
+        _showSnackbar('Error stopping recorder: $e');
+      }
+    }
+  }
+
+  void _showSnackbar(String message) {
+    if (mounted) {
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Error stopping recorder: $e')),
+        SnackBar(content: Text(message), duration: Duration(seconds: 1)),
       );
+    }
+  }
+
+  void _toggleFavorite() {
+    if (mounted) {
+      setState(() {
+        if (isLiked) {
+          // Remove from liked songs
+          likedSongsBox.values
+              .where((likedSong) => likedSong.songId == song.songId)
+              .forEach((likedSong) => likedSong.delete());
+          _showSnackbar("좋아요 목록에서 삭제되었습니다");
+          _favoriteController.reverse();
+        } else {
+          // Add to liked songs
+          likedSongsBox.add(LikedSong(songId: song.songId));
+          _showSnackbar("좋아요 추가되었습니다");
+          _favoriteController.animateTo(0.6);
+        }
+        isLiked = !isLiked;
+      });
     }
   }
 
   @override
   void dispose() {
     _recorder!.closeRecorder();
+    _favoriteController.dispose();
     super.dispose();
   }
 
@@ -130,15 +179,37 @@ class _RecordState extends State<Record> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(
-                            song.songTitle,
-                            style: AppTextStyles.textBold18,
+                          Container(
+                            width: 140,
+                            child: Text(
+                              song.songTitle,
+                              style: AppTextStyles.textBold18,
+                              overflow: TextOverflow.ellipsis,
+                              maxLines: 1,
+                            ),
                           ),
-                          Text(
-                            song.artistName,
-                            style: AppTextStyles.textMedium18,
+                          Container(
+                            width: 140, // Adjust width as needed
+                            child: Text(
+                              song.artistName,
+                              style: AppTextStyles.textMedium18,
+                              overflow: TextOverflow.ellipsis,
+                              maxLines: 1,
+                            ),
                           ),
                         ],
+                      ),
+                    ),
+                    Spacer(),
+                    SizedBox(
+                      width: 50,
+                      height: 50,
+                      child: IconButton(
+                        splashRadius: 10,
+                        iconSize: 30,
+                        onPressed: _toggleFavorite,
+                        icon: Lottie.asset(Icons8.heart_color,
+                            controller: _favoriteController),
                       ),
                     ),
                   ],
