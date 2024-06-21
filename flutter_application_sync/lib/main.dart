@@ -1,3 +1,4 @@
+import 'package:Sync/models/cover_model.dart';
 import 'package:Sync/models/song_model.dart';
 import 'package:Sync/view/ProfileRegistrationView.dart';
 import 'package:flutter/material.dart';
@@ -11,7 +12,10 @@ import '/const/colors.dart';
 void main() async {
   await Hive.initFlutter();
   Hive.registerAdapter(SongAdapter());
+  Hive.registerAdapter(CoverAdapter());
   var box = await Hive.openBox<Song>('newBox');
+  var box2 = await Hive.openBox<Cover>('coverBox');
+
   await box.clear(); // 기존 데이터 삭제
   var songs = Song.createDummySongList();
   for (var song in songs) {
