@@ -77,7 +77,7 @@ class _RecordViewState extends State<RecordView> {
                               style: AppTextStyles.textBold20
                                   .copyWith(color: biscay_50)),
                           const TextSpan(
-                              text: '님, \n좋아요 누른 곡들이에요👍',
+                              text: '님, \n좋아요 누른 곡들이에요 🎶',
                               style: AppTextStyles.textBold20),
                         ],
                       ),
