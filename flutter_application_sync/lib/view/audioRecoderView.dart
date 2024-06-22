@@ -120,7 +120,9 @@ class _RecordState extends State<Record> with SingleTickerProviderStateMixin {
           _showSnackbar("좋아요 목록에서 삭제되었습니다");
           _favoriteController.reverse().then((_) {
             if (mounted) {
-              setState(() {});
+              setState(() {
+                isLiked = !isLiked;
+              });
             }
           });
         } else {
@@ -129,11 +131,12 @@ class _RecordState extends State<Record> with SingleTickerProviderStateMixin {
           _showSnackbar("좋아요 추가되었습니다");
           _favoriteController.animateTo(0.6).then((_) {
             if (mounted) {
-              setState(() {});
+              setState(() {
+                isLiked = !isLiked;
+              });
             }
           });
         }
-        isLiked = !isLiked;
       });
     }
   }
